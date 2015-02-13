@@ -12,7 +12,7 @@ public class mAI : MonoBehaviour {
 	public Renderer eyes;
 
 	//private SphereCollider col;
-	public float fieldOfViewAngle = 110f;
+	//public float fieldOfViewAngle = 110f;
 	private bool playerDetected = false;
 	private GameObject player2;
 	
@@ -64,9 +64,9 @@ public class mAI : MonoBehaviour {
 		GetComponent<NavMeshAgent> ().destination = leader.position;
 
 		// Start walk motion
-		anim.SetBool ("attack", false);
+		//anim.SetBool ("attack", false);
 		anim.SetBool ("walk", true);
-
+		
 	}
 
 	/// <summary>
@@ -80,7 +80,7 @@ public class mAI : MonoBehaviour {
 			//transform.LookAt(leader);
 			// Start attack motion
 			GetComponent<NavMeshAgent> ().ResetPath();
-			anim.SetBool ("attack", true);
+			//anim.SetBool ("attack", true);
 
 			PlayerStats other = (PlayerStats)player.GetComponent (typeof(PlayerStats));
 			other.ApplyDamage(10);
@@ -145,17 +145,17 @@ public class mAI : MonoBehaviour {
 		// If the player has entered the trigger sphere...
 		if(other.gameObject == player2)
 		{
-			Debug.Log("sight");
+			//Debug.Log("sight");
 
-			Vector3 direction = player2.transform.position - transform.position;
-			float angle = Vector3.Angle(direction, transform.forward);
+			//Vector3 direction = player2.transform.position - transform.position;
+			//float angle = Vector3.Angle(direction, transform.forward);
 
-			if(angle < fieldOfViewAngle * 0.5f)
-			{
-				Debug.Log("seen");
+			//if(angle < fieldOfViewAngle * 0.5f)
+			//{
+				//Debug.Log("seen");
 				
 				playerDetected = true;
-			}
+			//}
 		}
 	}
 
