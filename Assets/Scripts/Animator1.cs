@@ -10,14 +10,17 @@ public class Animator1 : MonoBehaviour
 	{
 		//animator = this.GetComponent<Animator>();;
 		animation["Shoot"].wrapMode = WrapMode.Once;
+		animation["Start"].wrapMode = WrapMode.Once;
 		animation["Shoot"].layer = 1;
+		animation["Start"].layer = 2;
+
 	}
 	
 	void Update ()
 	{
 		ShootingFPC shootingFPC = game.GetComponent<ShootingFPC>();
 
-		if (shootingFPC.shooted)
+		if (shootingFPC.shooted && !animation.IsPlaying("Start"))
 		{
 			animation.CrossFade("Shoot", 0.1f);
 		}
@@ -29,5 +32,10 @@ public class Animator1 : MonoBehaviour
 		{
 			animation.CrossFade("Idle");
 		}
+	}
+
+	public void StartAnim()
+	{
+		animation.CrossFade("Start", 0f);
 	}
 }
