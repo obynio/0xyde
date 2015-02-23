@@ -85,7 +85,7 @@ public class mAI : MonoBehaviour {
 			PlayerStats other = (PlayerStats)player.GetComponent (typeof(PlayerStats));
 			other.ApplyDamage(10);
 
-			Debug.Log("Attack");
+			//Debug.Log("Attack");
 			attackTime = Time.time + attackRepeatTime;
 		}
 	}

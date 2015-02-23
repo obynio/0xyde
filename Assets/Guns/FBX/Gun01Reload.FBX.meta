@@ -1,0 +1,202 @@
+fileFormatVersion: 2
+guid: 3f02d984501f4cc4fbfb62313c401a0b
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: body
+    100002: Bone01
+    100004: Bone02
+    100006: Bone03
+    100008: Bone04
+    100010: Bone05
+    100012: Bone06
+    100014: Bone07
+    100016: Bone08
+    100018: Bone14
+    100020: Bone17
+    100022: Bone18
+    100024: Bone19
+    100026: Bone20
+    100028: Bone21
+    100030: Bone22
+    100032: Bone23
+    100034: Bone24
+    100036: Bone25
+    100038: Bone26
+    100040: Bone27
+    100042: Bone28
+    100044: Bone29
+    100046: Bone30
+    100048: Bone31
+    100050: Bone32
+    100052: Bone33
+    100054: Bone34
+    100056: Bone35
+    100058: Bone36
+    100060: Bone37
+    100062: Bone38
+    100064: Bone39
+    100066: Bone40
+    100068: Bone41
+    100070: Bone42
+    100072: Bone43
+    100074: Bone44
+    100076: Bone45
+    100078: Bone46
+    100080: Bone47
+    100082: Bone48
+    100084: fegyver
+    100086: //RootNode
+    100088: IK Chain01
+    100090: IK Chain02
+    100092: IK Chain03
+    100094: LeftArm
+    100096: LeftForearm
+    100098: LeftHand
+    100100: LeftShoulder
+    100102: RightArm
+    100104: RightForearm
+    100106: RightHand
+    100108: RightShoulder
+    100110: spine3
+    400000: body
+    400002: Bone01
+    400004: Bone02
+    400006: Bone03
+    400008: Bone04
+    400010: Bone05
+    400012: Bone06
+    400014: Bone07
+    400016: Bone08
+    400018: Bone14
+    400020: Bone17
+    400022: Bone18
+    400024: Bone19
+    400026: Bone20
+    400028: Bone21
+    400030: Bone22
+    400032: Bone23
+    400034: Bone24
+    400036: Bone25
+    400038: Bone26
+    400040: Bone27
+    400042: Bone28
+    400044: Bone29
+    400046: Bone30
+    400048: Bone31
+    400050: Bone32
+    400052: Bone33
+    400054: Bone34
+    400056: Bone35
+    400058: Bone36
+    400060: Bone37
+    400062: Bone38
+    400064: Bone39
+    400066: Bone40
+    400068: Bone41
+    400070: Bone42
+    400072: Bone43
+    400074: Bone44
+    400076: Bone45
+    400078: Bone46
+    400080: Bone47
+    400082: Bone48
+    400084: fegyver
+    400086: //RootNode
+    400088: IK Chain01
+    400090: IK Chain02
+    400092: IK Chain03
+    400094: LeftArm
+    400096: LeftForearm
+    400098: LeftHand
+    400100: LeftShoulder
+    400102: RightArm
+    400104: RightForearm
+    400106: RightHand
+    400108: RightShoulder
+    400110: spine3
+    4300000: body
+    7400000: Gun01Reload
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: body
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 3
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 0
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Gun01Reload
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 70
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 179
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 1
+  userData: 
