@@ -11,11 +11,7 @@ public class HPplayer : MonoBehaviour {
 	//float manaBarLength;
 	//float percentOfMana;
 	float health;
-	
-	void Start ()
-	{
 
-	}
 	void OnGUI ()
 	{
 
