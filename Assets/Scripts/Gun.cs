@@ -31,6 +31,13 @@ public class Gun : MonoBehaviour {
 			if (Physics.Raycast(ray,out hit, shotDistance))
 			{
 				shotDistance = hit.distance;
+				if (hit.collider.tag == "Zombie")
+				{
+					Debug.Log("Working bitch");
+					GameObject go = hit.collider.gameObject;
+					mAI other = (mAI)go.GetComponent (typeof(mAI));
+					other.hurt();
+				}
 			}
 
 			nextShootTime = Time.time + secondsInterval;

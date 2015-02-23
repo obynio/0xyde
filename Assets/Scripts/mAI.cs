@@ -23,7 +23,6 @@ public class mAI : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		player2 = GameObject.FindGameObjectWithTag("Player");
 		anim = GetComponent<Animator> ();
 		//col = GetComponent<SphereCollider> ();
 		attackTime = Time.time;
@@ -32,6 +31,7 @@ public class mAI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		player2 = GameObject.FindGameObjectWithTag("Player");
 		// Freeze Y axis
 		transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 		AI ();

@@ -30,7 +30,7 @@ public class CutAttack : MonoBehaviour {
 				{
 					hitdistance = hit.distance;
 					Debug.DrawLine (center.position, hit.point, Color.cyan);
-					if(hit.distance < 3f)
+					if(hit.distance < 2.5f)
 					{
 						Debug.Log("Working bitch");
 						GameObject go = hit.collider.gameObject;
