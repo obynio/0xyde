@@ -5,6 +5,7 @@ public class animKick : MonoBehaviour {
 	
 	public Transform center;
 	public float hitdistance;
+	public GameObject cam;
 
 	void Start ()
 	{
@@ -17,6 +18,7 @@ public class animKick : MonoBehaviour {
 	{
 		if (Input.GetButtonDown ("Kick")&& !animation.IsPlaying("Kick"))
 		{
+			cam.animation.CrossFade("Kickcam");
 			animation.CrossFade("Kick");
 			RaycastHit hit;
 			Ray ray = new Ray(center.position, center.transform.forward);
