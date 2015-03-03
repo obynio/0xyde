@@ -29,7 +29,7 @@ public class CutAttack : MonoBehaviour {
 				if (hit.collider.tag == "Zombie")
 				{
 					hitdistance = hit.distance;
-					Debug.DrawLine (center.position, hit.point, Color.cyan);
+					//Debug.DrawLine (center.position, hit.point, Color.cyan);
 					if(hit.distance < 2.5f)
 					{
 						Debug.Log("Working bitch");

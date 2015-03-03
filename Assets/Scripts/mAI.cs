@@ -10,6 +10,7 @@ public class mAI : MonoBehaviour {
 	private float attackRepeatTime = 1;
 	private float attackTime = 1;
 	public Renderer eyes;
+	public bool kick;
 
 	//private SphereCollider col;
 	//public float fieldOfViewAngle = 110f;
@@ -20,17 +21,38 @@ public class mAI : MonoBehaviour {
 
 	private int life = 1;
 
+
 	// Use this for initialization
 	void Start () 
 	{
+		kick = false;
 		anim = GetComponent<Animator> ();
 		//col = GetComponent<SphereCollider> ();
 		attackTime = Time.time;
+	}
+
+	IEnumerator KickT()
+	{
+		yield return new WaitForSeconds(0.1f);
+		kick = true;
+		yield return new WaitForSeconds(0.25f);
+		kick = false;
+	}
+
+	public void Kick()
+	{
+		StartCoroutine(KickT());
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		if (kick)
+		{
+			float translation = Time.deltaTime * 10;
+			transform.Translate(0, 0, - translation);
+		}
+
 		player2 = GameObject.FindGameObjectWithTag("Player");
 		// Freeze Y axis
 		transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);

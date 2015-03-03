@@ -5,6 +5,7 @@ using System.Collections;
 public class ShootingFPC : MonoBehaviour
 {
 	public float rpm;
+	public int ammo;
 
 	private float secondsInterval;
 	private float nextShootTime;
@@ -20,6 +21,7 @@ public class ShootingFPC : MonoBehaviour
 	void Start()
 	{
 		secondsInterval = 60 / rpm;
+		ammo = 10;
 	}
 	void Update ()
 	{
@@ -29,9 +31,11 @@ public class ShootingFPC : MonoBehaviour
 			Rigidbody clone = Instantiate(theBullet, spawn.transform.position, turner.transform.rotation) as Rigidbody;
 			clone.velocity = transform.TransformDirection(Vector3.forward * speed);
 			nextShootTime = Time.time + secondsInterval;
-			
+
+			ammo = ammo-1;
 			Destroy (clone.gameObject, 2);
 			shooted = true;
+
 		}
 		else
 		{
@@ -43,7 +47,7 @@ public class ShootingFPC : MonoBehaviour
 	{
 		bool canShoot = true;
 		
-		if(Time.time < nextShootTime)
+		if(Time.time < nextShootTime || ammo==0)
 		{
 			canShoot = false;
 		}
