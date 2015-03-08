@@ -11,6 +11,7 @@ public class SingleP : MonoBehaviour {
 	void Start()
 	{
 		Screen.showCursor = false;
+		QualitySettings.antiAliasing = 8;
 	}
 
 	void Update()
