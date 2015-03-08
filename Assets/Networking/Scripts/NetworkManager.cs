@@ -89,7 +89,7 @@ public class NetworkManager : MonoBehaviour {
             return;
         }
 
-        SpawnSpot mySpot = spots[UnityEngine.Random.Range(0, spots.Length)];
+        SpawnSpot mySpot = spots[playerList.Length % 2];
 
         GameObject dpc = PhotonNetwork.Instantiate("dpc", mySpot.transform.position, mySpot.transform.rotation, 0);
         //((MonoBehaviour)dpc.GetComponent("FPSInputController")).enabled = true;
@@ -172,7 +172,7 @@ public class NetworkManager : MonoBehaviour {
 
             GUILayout.BeginArea(infoRect, GUI.skin.box);
             {
-                GUILayout.Label("MigiOS", GUI.skin.customStyles[0]);
+                GUILayout.Label("Migi", GUI.skin.customStyles[0]);
                 GUILayout.Label(sentence);
             }
             GUILayout.EndArea();
@@ -184,7 +184,7 @@ public class NetworkManager : MonoBehaviour {
 
             GUILayout.BeginArea(infoRect, GUI.skin.box);
             {
-                GUILayout.Label("MigiOS", GUI.skin.customStyles[0]);
+                GUILayout.Label("Migi", GUI.skin.customStyles[0]);
                 GUILayout.Label(sentence);
             }
             GUILayout.EndArea();
