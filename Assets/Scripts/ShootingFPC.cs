@@ -21,7 +21,7 @@ public class ShootingFPC : MonoBehaviour
 	void Start()
 	{
 		secondsInterval = 60 / rpm;
-		ammo = 10;
+		ammo = 15;
 	}
 	void Update ()
 	{

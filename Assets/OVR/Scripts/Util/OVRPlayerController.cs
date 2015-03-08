@@ -218,7 +218,7 @@ public class OVRPlayerController : MonoBehaviour
 
 		// Run!
 		if (dpad_move || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-			moveInfluence *= 2.0f;
+			moveInfluence *= 1.0f;
 
 		if (DirXform != null)
 		{
@@ -247,11 +247,12 @@ public class OVRPlayerController : MonoBehaviour
 		prevHatRight = curHatRight;
 
 		//Use keys to ratchet rotation
+		/*
 		if (Input.GetKeyDown(KeyCode.A))
 			YRotation -= RotationRatchet;
 
 		if (Input.GetKeyDown(KeyCode.E))
-			YRotation += RotationRatchet;
+			YRotation += RotationRatchet;*/
 
 		float rotateInfluence = SimulationRate * Time.deltaTime * RotationAmount * RotationScaleMultiplier;
 
@@ -261,7 +262,7 @@ public class OVRPlayerController : MonoBehaviour
 		moveInfluence = SimulationRate * Time.deltaTime * Acceleration * 0.1f * MoveScale * MoveScaleMultiplier;
 
 #if !UNITY_ANDROID // LeftTrigger not avail on Android game pad
-		moveInfluence *= 1.0f + OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.LeftTrigger);
+		//moveInfluence *= 1.0f + OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.LeftTrigger);
 #endif
 
 		if(DirXform != null)

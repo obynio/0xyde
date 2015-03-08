@@ -4,6 +4,7 @@ using System.Collections;
 public class mAI : MonoBehaviour {
 
 	public Transform leader;
+	public Transform Rot;
 	public float maxDistance = 8;
 	public float minDistance = 2;
 	private Animator anim;
@@ -49,8 +50,8 @@ public class mAI : MonoBehaviour {
 	{
 		if (kick)
 		{
-			float translation = Time.deltaTime * 10;
-			transform.Translate(0, 0, - translation);
+			float translation = Time.deltaTime * -10;
+			transform.Translate(0, 0, translation);
 		}
 
 		player2 = GameObject.FindGameObjectWithTag("Player");
