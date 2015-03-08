@@ -3,9 +3,6 @@ using System.Collections;
 
 public class FullScreen : MonoBehaviour {
 
-	private int w = 32;
-	private int h = 32;
-	
 	void Start()
 	{
 		Screen.showCursor = false;
