@@ -23,6 +23,11 @@ public class ModeSelect : MonoBehaviour
 
 	void Update ()
 	{
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			Application.LoadLevel("0xyde Menu");
+		}
+
 		if (Input.GetButtonDown ("Mode"))
 		{
 			upMode = !upMode;

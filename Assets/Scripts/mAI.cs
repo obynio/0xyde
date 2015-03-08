@@ -157,7 +157,7 @@ public class mAI : MonoBehaviour {
 
 		// Start dead motion
 		anim.SetBool ("alive", false);
-		(gameObject.GetComponent(typeof(CapsuleCollider)) as CapsuleCollider).isTrigger = true;
+		(gameObject.GetComponent(typeof(BoxCollider)) as BoxCollider).isTrigger = true;
 		eyes.enabled = false;
 		Debug.Log("You've been targeted for termination");
 	}
