@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class Settings : MonoBehaviour {
+	
+	public Camera cam;
 
 	void OnMouseEnter()
 	{
@@ -15,6 +17,7 @@ public class Settings : MonoBehaviour {
 	
 	void OnMouseUp()
 	{	
-		//settings
+		cam.transform.rotation = Quaternion.Euler (0,100,0);
+
 	}
 }
