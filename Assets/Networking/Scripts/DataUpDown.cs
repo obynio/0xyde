@@ -66,7 +66,7 @@ public class DataUpDown : MonoBehaviour {
 
 			Debug.Log("ok - " + user + " & " + access);
 
-			Application.LoadLevel("scene");
+			Application.LoadLevel("alphamap");
 		}
 		else
 		{
@@ -93,13 +93,13 @@ public class DataUpDown : MonoBehaviour {
 		{
 			GUI.Label(new Rect (60, 10, 500, 40), "Entrez dans la matrice", GUI.skin.customStyles[0]);
 
-			GUI.Label(new Rect (60, (Screen.height - 400) / 2 - 20, 300, 24), "Login: ");
-			login = GUI.TextField (new Rect (180, (Screen.height - 400) / 2 - 20, 300, 24), login);
+			GUI.Label(new Rect (60, 70, 300, 24), "Login: ");
+			login = GUI.TextField (new Rect (180, 70, 300, 24), login);
 
-			GUI.Label(new Rect (60, (Screen.height - 400) / 2 + 20, 300, 24), "Password: ");
-			password = GUI.PasswordField (new Rect (180, (Screen.height - 400) / 2 + 20, 300, 24), password, '•');
+			GUI.Label(new Rect (60, 110, 300, 24), "Password: ");
+			password = GUI.PasswordField (new Rect (180, 110, 300, 24), password, '•');
 
-			if (GUI.Button (new Rect (340, (Screen.height - 400) / 2 + 60, 140, 36), "Login")) 
+			if (GUI.Button (new Rect (340, 150, 140, 36), "Login")) 
 			{
 				// When pushing login button, check credentials
 				StartCoroutine(getJsonLogin(login, password));

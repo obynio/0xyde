@@ -5,20 +5,20 @@ using System;
 public class NetworkManager : MonoBehaviour {
 
     public Camera standbyCamera;
+    public GameObject land;
     SpawnSpot[] spots;
 
     // For popup notifications
     private int notifId = 0;
     private int timeStamp;
 
+    // FUCKING MONOBEHAVIOUR WARNING !
     private DataUpDown data = new DataUpDown();
 
     private PhotonPlayer[] playerList;
     private PhotonPlayer playerDiff;
 
     public GUISkin Skin;
-
-    // private DataUpDown data = new DataUpDown();
 
     // Use this for initialization
     void Start()
@@ -172,7 +172,7 @@ public class NetworkManager : MonoBehaviour {
 
             GUILayout.BeginArea(infoRect, GUI.skin.box);
             {
-                GUILayout.Label("Cortana", GUI.skin.customStyles[0]);
+                GUILayout.Label("MigiOS", GUI.skin.customStyles[0]);
                 GUILayout.Label(sentence);
             }
             GUILayout.EndArea();
@@ -184,7 +184,7 @@ public class NetworkManager : MonoBehaviour {
 
             GUILayout.BeginArea(infoRect, GUI.skin.box);
             {
-                GUILayout.Label("Cortana", GUI.skin.customStyles[0]);
+                GUILayout.Label("MigiOS", GUI.skin.customStyles[0]);
                 GUILayout.Label(sentence);
             }
             GUILayout.EndArea();
