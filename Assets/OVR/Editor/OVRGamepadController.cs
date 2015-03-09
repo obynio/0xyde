@@ -34,34 +34,34 @@ public class OVRGamepadController : MonoBehaviour
 	{
 		None = -1,
 		LeftXAxis = 0,
-		LeftYAxis,
-		RightXAxis,
-		RightYAxis,
-		LeftTrigger,
-		RightTrigger,
+	   	LeftYAxis,
+	   	RightXAxis,
+	   	RightYAxis,
+	   	LeftTrigger,
+	   	RightTrigger,
 		Max,
 	};
-	
+
 	public enum Button
 	{
 		None = -1,
 		A = 0,
-		B,
-		X,
-		Y,
-		Up,
-		Down,
-		LeftShoulder,
-		RightShoulder,
-		Start,
-		Back,
-		LStick,
-		RStick,
-		L1,
-		R1,
+	   	B,
+	   	X,
+	   	Y,
+	   	Up,
+	   	Down,
+	   	LeftShoulder,
+	   	RightShoulder,
+	   	Start,
+	   	Back,
+	   	LStick,
+	   	RStick,
+	   	L1,
+	   	R1,
 		Max
 	};
-	
+
 	public static string[] DefaultAxisNames = new string[(int)Axis.Max]
 	{
 		"Left_X_Axis",
@@ -71,8 +71,8 @@ public class OVRGamepadController : MonoBehaviour
 		"LeftTrigger",
 		"RightTrigger",
 	};
-	
-	public static string[] DefaultButtonNames = new string[(int)Button.Max]
+
+    public static string[] DefaultButtonNames = new string[(int)Button.Max]
 	{
 		"Button A",
 		"Button B",
@@ -89,21 +89,21 @@ public class OVRGamepadController : MonoBehaviour
 		"LeftShoulder",
 		"RightShoulder",
 	};
-	
+
 	public static int[] DefaultButtonIds = new int[(int)Button.Max]
 	{
 		0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
 	};
-	
-	public static string[] AxisNames = null;
-	public static string[] ButtonNames = null;
-	
-	static OVRGamepadController()
-	{
-		SetAxisNames(DefaultAxisNames);
-		SetButtonNames(DefaultButtonNames);
-	}
-	
+
+    public static string[] AxisNames = null;
+    public static string[] ButtonNames = null;
+
+    static OVRGamepadController()
+    {
+        SetAxisNames(DefaultAxisNames);
+        SetButtonNames(DefaultButtonNames);
+    }
+
 	public static void SetAxisNames(string[] axisNames)
 	{
 		AxisNames = axisNames;
@@ -113,14 +113,14 @@ public class OVRGamepadController : MonoBehaviour
 	{
 		ButtonNames = buttonNames;
 	}
-	
+
 	public delegate float ReadAxisDelegate(Axis axis);
 	public delegate bool ReadButtonDelegate(Button button);
 	
 	public static ReadAxisDelegate ReadAxis = DefaultReadAxis;
 	public static ReadButtonDelegate ReadButton = DefaultReadButton;
-	
-	#if (!UNITY_ANDROID || UNITY_EDITOR)
+
+#if (!UNITY_ANDROID || UNITY_EDITOR)
 	private static bool GPC_Available = false;
 	
 	//-------------------------
@@ -131,35 +131,35 @@ public class OVRGamepadController : MonoBehaviour
 	/// </summary>
 	/// <returns><c>true</c>, if c_ initialize was GPed, <c>false</c> otherwise.</returns>
 	public static bool GPC_Initialize()
-	{
-		if (!OVRManager.instance.isSupportedPlatform)
-			return false;
+    {
+        if (!OVRManager.instance.isSupportedPlatform)
+            return false;
 		return OVR_GamepadController_Initialize();
 	}
-	
+
 	/// <summary>
 	/// GPC_Destroy
 	/// </summary>
 	/// <returns><c>true</c>, if c_ destroy was GPed, <c>false</c> otherwise.</returns>
 	public static bool GPC_Destroy()
 	{
-		if (!OVRManager.instance.isSupportedPlatform)
-			return false;
+        if (!OVRManager.instance.isSupportedPlatform)
+            return false;
 		return OVR_GamepadController_Destroy();
 	}
-	
+
 	/// <summary>
 	/// GPC_Update
 	/// </summary>
 	/// <returns><c>true</c>, if c_ update was GPed, <c>false</c> otherwise.</returns>
 	public static bool GPC_Update()
-	{
-		if (!OVRManager.instance.isSupportedPlatform)
-			return false;
+    {
+        if (!OVRManager.instance.isSupportedPlatform)
+            return false;
 		return OVR_GamepadController_Update();
 	}
-	#endif
-	
+#endif
+
 	/// <summary>
 	/// GPC_GetAxis
 	/// The default delegate for retrieving axis info.
@@ -168,11 +168,11 @@ public class OVRGamepadController : MonoBehaviour
 	/// <param name="axis">Axis.</param>
 	public static float DefaultReadAxis(Axis axis)
 	{
-		#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
 		return Input.GetAxis(AxisNames[(int)axis]);
-		#else
+#else
 		return OVR_GamepadController_GetAxis((int)axis);
-		#endif
+#endif
 	}
 	
 	public static float GPC_GetAxis(Axis axis)
@@ -181,12 +181,12 @@ public class OVRGamepadController : MonoBehaviour
 			return 0f;
 		return ReadAxis(axis);
 	}
-	
+
 	public static void SetReadAxisDelegate(ReadAxisDelegate del)
 	{
 		ReadAxis = del;
 	}
-	
+
 	/// <summary>
 	/// GPC_GetButton
 	/// </summary>
@@ -194,36 +194,36 @@ public class OVRGamepadController : MonoBehaviour
 	/// <param name="button">Button.</param>
 	public static bool DefaultReadButton(Button button)
 	{
-		#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
 		return Input.GetButton(ButtonNames[(int)button]);
-		#else
+#else
 		return OVR_GamepadController_GetButton((int)button);
-		#endif
+#endif
 	}
-	
+
 	public static bool GPC_GetButton(Button button)
 	{
 		if (ReadButton == null)
 			return false;
 		return ReadButton(button);
 	}
-	
+
 	public static void SetReadButtonDelegate(ReadButtonDelegate del)
 	{
 		ReadButton = del;
 	}
-	
+
 	/// <summary>
 	/// GPC_IsAvailable
 	/// </summary>
 	/// <returns><c>true</c>, if c_ is available was GPed, <c>false</c> otherwise.</returns>
 	public static bool GPC_IsAvailable()
 	{
-		#if !UNITY_ANDROID || UNITY_EDITOR
+#if !UNITY_ANDROID || UNITY_EDITOR
 		return GPC_Available;
-		#else
+#else
 		return true;
-		#endif
+#endif
 	}
 	
 	/// <summary>
@@ -233,38 +233,38 @@ public class OVRGamepadController : MonoBehaviour
 	{
 		// Axis test
 		Debug.Log(string.Format("LT:{0:F3} RT:{1:F3} LX:{2:F3} LY:{3:F3} RX:{4:F3} RY:{5:F3}",
-		                        GPC_GetAxis(Axis.LeftTrigger), GPC_GetAxis(Axis.RightTrigger),
-		                        GPC_GetAxis(Axis.LeftXAxis), GPC_GetAxis(Axis.LeftYAxis),
-		                        GPC_GetAxis(Axis.RightXAxis), GPC_GetAxis(Axis.RightYAxis)));
-		
+		GPC_GetAxis(Axis.LeftTrigger), GPC_GetAxis(Axis.RightTrigger),
+		GPC_GetAxis(Axis.LeftXAxis), GPC_GetAxis(Axis.LeftYAxis),
+		GPC_GetAxis(Axis.RightXAxis), GPC_GetAxis(Axis.RightYAxis)));
+
 		// Button test
 		Debug.Log(string.Format("A:{0} B:{1} X:{2} Y:{3} U:{4} D:{5} L:{6} R:{7} SRT:{8} BK:{9} LS:{10} RS:{11} L1{12} R1{13}",
-		                        GPC_GetButton(Button.A), GPC_GetButton(Button.B),
-		                        GPC_GetButton(Button.X), GPC_GetButton(Button.Y),
-		                        GPC_GetButton(Button.Up), GPC_GetButton(Button.Down),
-		                        GPC_GetButton(Button.LeftShoulder), GPC_GetButton(Button.RightShoulder),
-		                        GPC_GetButton(Button.Start), GPC_GetButton(Button.Back),
-		                        GPC_GetButton(Button.LStick), GPC_GetButton(Button.RStick),
-		                        GPC_GetButton(Button.L1), GPC_GetButton(Button.R1)));
+		GPC_GetButton(Button.A), GPC_GetButton(Button.B),
+		GPC_GetButton(Button.X), GPC_GetButton(Button.Y),
+		GPC_GetButton(Button.Up), GPC_GetButton(Button.Down),
+		GPC_GetButton(Button.LeftShoulder), GPC_GetButton(Button.RightShoulder),
+		GPC_GetButton(Button.Start), GPC_GetButton(Button.Back),
+		GPC_GetButton(Button.LStick), GPC_GetButton(Button.RStick),
+		GPC_GetButton(Button.L1), GPC_GetButton(Button.R1)));
 	}
-	
-	#if !UNITY_ANDROID || UNITY_EDITOR
+
+#if !UNITY_ANDROID || UNITY_EDITOR
 	void Start()
-	{
+    {
 		GPC_Available = GPC_Initialize();
-	}
-	
-	void Update()
-	{
+    }
+
+    void Update()
+    {
 		GPC_Available = GPC_Update();
-	}
-	
+    }
+
 	void OnDestroy()
 	{
 		GPC_Destroy();
 		GPC_Available = false;
 	}
-	
+
 	public const string LibOVR = "OculusPlugin";
 	
 	[DllImport(LibOVR, CallingConvention = CallingConvention.Cdecl)]
@@ -277,5 +277,5 @@ public class OVRGamepadController : MonoBehaviour
 	public static extern float OVR_GamepadController_GetAxis(int axis);
 	[DllImport(LibOVR, CallingConvention = CallingConvention.Cdecl)]
 	public static extern bool OVR_GamepadController_GetButton(int button);
-	#endif
+#endif
 }

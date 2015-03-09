@@ -105,8 +105,8 @@ public class mAI : MonoBehaviour {
 			GetComponent<NavMeshAgent> ().ResetPath();
 			//anim.SetBool ("attack", true);
 
-			PlayerStats other = (PlayerStats)player.GetComponent (typeof(PlayerStats));
-			other.ApplyDamage(10);
+			//PlayerStats other = (PlayerStats)player.GetComponent (typeof(PlayerStats));
+			//other.ApplyDamage(10);
 
 			//Debug.Log("Attack");
 			attackTime = Time.time + attackRepeatTime;

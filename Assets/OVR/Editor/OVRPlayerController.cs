@@ -32,47 +32,47 @@ public class OVRPlayerController : MonoBehaviour
 	/// The rate acceleration during movement.
 	/// </summary>
 	public float Acceleration = 0.1f;
-	
+
 	/// <summary>
 	/// The rate of damping on movement.
 	/// </summary>
 	public float Damping = 0.3f;
-	
+
 	/// <summary>
 	/// The rate of additional damping when moving sideways or backwards.
 	/// </summary>
 	public float BackAndSideDampen = 0.5f;
-	
+
 	/// <summary>
 	/// The force applied to the character when jumping.
 	/// </summary>
-	private float JumpForce = 0.2f;
-	
+	private float JumpForce = 0.1f;
+
 	/// <summary>
 	/// The rate of rotation when using a gamepad.
 	/// </summary>
 	public float RotationAmount = 1.5f;
-	
+
 	/// <summary>
 	/// The rate of rotation when using the keyboard.
 	/// </summary>
 	public float RotationRatchet = 45.0f;
-	
+
 	/// <summary>
 	/// The player's current rotation about the Y axis.
 	/// </summary>
 	private float YRotation = 0.0f;
-	
+
 	/// <summary>
 	/// If true, tracking data from a child OVRCameraRig will update the direction of movement.
 	/// </summary>
 	public bool HmdRotatesY = true;
-	
+
 	/// <summary>
 	/// Modifies the strength of gravity.
 	/// </summary>
 	public float GravityModifier = 0.379f;
-	
+
 	private float MoveScale = 1.0f;
 	private Vector3 MoveThrottle = Vector3.zero;
 	private float FallSpeed = 0.0f;	
@@ -81,11 +81,11 @@ public class OVRPlayerController : MonoBehaviour
 	/// If true, each OVRPlayerController will use the player's physical height.
 	/// </summary>
 	public bool useProfileHeight = true;
-	
+
 	protected CharacterController Controller = null;
 	protected OVRCameraRig CameraController = null;
 	protected Transform DirXform = null;
-	
+
 	private float MoveScaleMultiplier = 1.0f;
 	private float RotationScaleMultiplier = 1.0f;
 	private bool  SkipMouseRotation = false;
@@ -93,36 +93,36 @@ public class OVRPlayerController : MonoBehaviour
 	private bool prevHatLeft = false;
 	private bool prevHatRight = false;
 	private float SimulationRate = 60f;
-	
+
 	void Awake()
 	{
 		Controller = gameObject.GetComponent<CharacterController>();
-		
+
 		if(Controller == null)
 			Debug.LogWarning("OVRPlayerController: No CharacterController attached.");
-		
+
 		// We use OVRCameraRig to set rotations to cameras,
 		// and to be influenced by rotation
 		OVRCameraRig[] CameraControllers;
 		CameraControllers = gameObject.GetComponentsInChildren<OVRCameraRig>();
-		
+
 		if(CameraControllers.Length == 0)
 			Debug.LogWarning("OVRPlayerController: No OVRCameraRig attached.");
 		else if (CameraControllers.Length > 1)
 			Debug.LogWarning("OVRPlayerController: More then 1 OVRCameraRig attached.");
 		else
 			CameraController = CameraControllers[0];
-		
+
 		DirXform = transform.Find("ForwardDirection");
-		
+
 		if(DirXform == null)
 			Debug.LogWarning("OVRPlayerController: ForwardDirection game object not found. Do not use.");
-		
-		#if UNITY_ANDROID && !UNITY_EDITOR
+
+#if UNITY_ANDROID && !UNITY_EDITOR
 		OVRManager.display.RecenteredPose += ResetOrientation;
-		#endif
+#endif
 	}
-	
+
 	protected virtual void Update()
 	{
 		if (useProfileHeight)
@@ -131,95 +131,95 @@ public class OVRPlayerController : MonoBehaviour
 			p.y = OVRManager.profile.neckHeight - 0.5f * Controller.height;
 			CameraController.transform.localPosition = p;
 		}
-		
+
 		UpdateMovement();
-		
+
 		Vector3 moveDirection = Vector3.zero;
-		
+
 		float motorDamp = (1.0f + (Damping * SimulationRate * Time.deltaTime));
-		
+
 		MoveThrottle.x /= motorDamp;
 		MoveThrottle.y = (MoveThrottle.y > 0.0f) ? (MoveThrottle.y / motorDamp) : MoveThrottle.y;
 		MoveThrottle.z /= motorDamp;
-		
+
 		moveDirection += MoveThrottle * SimulationRate * Time.deltaTime;
-		
+
 		// Gravity
 		if (Controller.isGrounded && FallSpeed <= 0)
 			FallSpeed = ((Physics.gravity.y * (GravityModifier * 0.002f)));
 		else
 			FallSpeed += ((Physics.gravity.y * (GravityModifier * 0.002f)) * SimulationRate * Time.deltaTime);
-		
+
 		moveDirection.y += FallSpeed * SimulationRate * Time.deltaTime;
-		
+
 		// Offset correction for uneven ground
 		float bumpUpOffset = 0.0f;
-		
+
 		if (Controller.isGrounded && MoveThrottle.y <= 0.001f)
 		{
 			bumpUpOffset = Mathf.Max(Controller.stepOffset, new Vector3(moveDirection.x, 0, moveDirection.z).magnitude);
 			moveDirection -= bumpUpOffset * Vector3.up;
 		}
-		
+
 		Vector3 predictedXZ = Vector3.Scale((Controller.transform.localPosition + moveDirection), new Vector3(1, 0, 1));
-		
+
 		// Move contoller
 		Controller.Move(moveDirection);
-		
+
 		Vector3 actualXZ = Vector3.Scale(Controller.transform.localPosition, new Vector3(1, 0, 1));
-		
+
 		if (predictedXZ != actualXZ)
 			MoveThrottle += (actualXZ - predictedXZ) / (SimulationRate * Time.deltaTime);
 	}
-	
+
 	public virtual void UpdateMovement()
 	{
 		if (Input.GetButtonDown("Jump"))
 		{
 			Jump();
 		}
-		
+
 		if (HaltUpdateMovement)
 			return;
-		
+
 		bool moveForward = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.UpArrow);
 		bool moveLeft = Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow);
 		bool moveRight = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
 		bool moveBack = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
-		
+
 		bool dpad_move = false;
-		
+
 		if (OVRGamepadController.GPC_GetButton(OVRGamepadController.Button.Up))
 		{
 			moveForward = true;
 			dpad_move   = true;
-			
+
 		}
 		if (OVRGamepadController.GPC_GetButton(OVRGamepadController.Button.Down))
 		{
 			moveBack  = true;
 			dpad_move = true;
 		}
-		
+
 		MoveScale = 1.0f;
-		
+
 		if ( (moveForward && moveLeft) || (moveForward && moveRight) ||
-		    (moveBack && moveLeft)    || (moveBack && moveRight) )
+			 (moveBack && moveLeft)    || (moveBack && moveRight) )
 			MoveScale = 0.70710678f;
-		
+
 		// No positional movement if we are in the air
 		//if (!Controller.isGrounded)
 		//	MoveScale = 0.0f;
-		
+
 		MoveScale *= SimulationRate * Time.deltaTime;
-		
+
 		// Compute this for key movement
 		float moveInfluence = Acceleration * 0.1f * MoveScale * MoveScaleMultiplier;
-		
+
 		// Run!
 		if (dpad_move || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-			moveInfluence *= 2.0f;
-		
+			moveInfluence *= 1.0f;
+
 		if (DirXform != null)
 		{
 			if (moveForward)
@@ -231,75 +231,76 @@ public class OVRPlayerController : MonoBehaviour
 			if (moveRight)
 				MoveThrottle += DirXform.TransformDirection(Vector3.right * moveInfluence * transform.lossyScale.x) * BackAndSideDampen;
 		}
-		
+
 		bool curHatLeft = OVRGamepadController.GPC_GetButton(OVRGamepadController.Button.LeftShoulder);
-		
+
 		if (curHatLeft && !prevHatLeft)
 			YRotation -= RotationRatchet;
-		
+
 		prevHatLeft = curHatLeft;
-		
+
 		bool curHatRight = OVRGamepadController.GPC_GetButton(OVRGamepadController.Button.RightShoulder);
-		
+
 		if(curHatRight && !prevHatRight)
 			YRotation += RotationRatchet;
-		
+
 		prevHatRight = curHatRight;
-		
+
 		//Use keys to ratchet rotation
+		/*
 		if (Input.GetKeyDown(KeyCode.A))
 			YRotation -= RotationRatchet;
-		
+
 		if (Input.GetKeyDown(KeyCode.E))
-			YRotation += RotationRatchet;
-		
+			YRotation += RotationRatchet;*/
+
 		float rotateInfluence = SimulationRate * Time.deltaTime * RotationAmount * RotationScaleMultiplier;
-		
+
 		if (!SkipMouseRotation)
 			YRotation += Input.GetAxis("Mouse X") * rotateInfluence * 3.25f;
-		
+
 		moveInfluence = SimulationRate * Time.deltaTime * Acceleration * 0.1f * MoveScale * MoveScaleMultiplier;
-		
-		#if !UNITY_ANDROID // LeftTrigger not avail on Android game pad
-		moveInfluence *= 1.0f + OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.LeftTrigger);
-		#endif
-		
+
+#if !UNITY_ANDROID // LeftTrigger not avail on Android game pad
+		//moveInfluence *= 1.0f + OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.LeftTrigger);
+#endif
+
 		if(DirXform != null)
 		{
 			float leftAxisX = OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.LeftXAxis);
 			float leftAxisY = OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.LeftYAxis);
-			
+
 			if(leftAxisY > 0.0f)
-				MoveThrottle += leftAxisY
+	    		MoveThrottle += leftAxisY
 					* DirXform.TransformDirection(Vector3.forward * moveInfluence);
-			
+
 			if(leftAxisY < 0.0f)
-				MoveThrottle += Mathf.Abs(leftAxisY)
+	    		MoveThrottle += Mathf.Abs(leftAxisY)
 					* DirXform.TransformDirection(Vector3.back * moveInfluence) * BackAndSideDampen;
-			
+
 			if(leftAxisX < 0.0f)
-				MoveThrottle += Mathf.Abs(leftAxisX)
+	    		MoveThrottle += Mathf.Abs(leftAxisX)
 					* DirXform.TransformDirection(Vector3.left * moveInfluence) * BackAndSideDampen;
-			
+
 			if(leftAxisX > 0.0f)
 				MoveThrottle += leftAxisX
 					* DirXform.TransformDirection(Vector3.right * moveInfluence) * BackAndSideDampen;
 		}
-		
+
 		float rightAxisX = OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.RightXAxis);
-		
+
 		YRotation += rightAxisX * rotateInfluence;
-		
-		DirXform.rotation = Quaternion.Euler(0.0f, YRotation, 0.0f);
+
+        DirXform.rotation = Quaternion.Euler(0.0f, YRotation, 0.0f);
 		transform.rotation = DirXform.rotation;
-		
+
 		if (HmdRotatesY)
 		{
 			float hmdY = CameraController.centerEyeAnchor.localRotation.eulerAngles.y;
 			DirXform.rotation *= Quaternion.Euler(0.0f, hmdY, 0.0f);
 		}
 	}
-	
+
 	/// <summary>
 	/// Jump! Must be enabled manually.
 	/// </summary>
@@ -307,12 +308,12 @@ public class OVRPlayerController : MonoBehaviour
 	{
 		if (!Controller.isGrounded)
 			return false;
-		
+
 		MoveThrottle += new Vector3(0, JumpForce, 0);
-		
+
 		return true;
 	}
-	
+
 	/// <summary>
 	/// Stop this instance.
 	/// </summary>
@@ -322,7 +323,7 @@ public class OVRPlayerController : MonoBehaviour
 		MoveThrottle = Vector3.zero;
 		FallSpeed = 0.0f;
 	}
-	
+
 	/// <summary>
 	/// Gets the move scale multiplier.
 	/// </summary>
@@ -331,7 +332,7 @@ public class OVRPlayerController : MonoBehaviour
 	{
 		moveScaleMultiplier = MoveScaleMultiplier;
 	}
-	
+
 	/// <summary>
 	/// Sets the move scale multiplier.
 	/// </summary>
@@ -340,7 +341,7 @@ public class OVRPlayerController : MonoBehaviour
 	{
 		MoveScaleMultiplier = moveScaleMultiplier;
 	}
-	
+
 	/// <summary>
 	/// Gets the rotation scale multiplier.
 	/// </summary>
@@ -349,7 +350,7 @@ public class OVRPlayerController : MonoBehaviour
 	{
 		rotationScaleMultiplier = RotationScaleMultiplier;
 	}
-	
+
 	/// <summary>
 	/// Sets the rotation scale multiplier.
 	/// </summary>
@@ -358,7 +359,7 @@ public class OVRPlayerController : MonoBehaviour
 	{
 		RotationScaleMultiplier = rotationScaleMultiplier;
 	}
-	
+
 	/// <summary>
 	/// Gets the allow mouse rotation.
 	/// </summary>
@@ -367,7 +368,7 @@ public class OVRPlayerController : MonoBehaviour
 	{
 		skipMouseRotation = SkipMouseRotation;
 	}
-	
+
 	/// <summary>
 	/// Sets the allow mouse rotation.
 	/// </summary>
@@ -376,7 +377,7 @@ public class OVRPlayerController : MonoBehaviour
 	{
 		SkipMouseRotation = skipMouseRotation;
 	}
-	
+
 	/// <summary>
 	/// Gets the halt update movement.
 	/// </summary>
@@ -385,7 +386,7 @@ public class OVRPlayerController : MonoBehaviour
 	{
 		haltUpdateMovement = HaltUpdateMovement;
 	}
-	
+
 	/// <summary>
 	/// Sets the halt update movement.
 	/// </summary>
@@ -394,7 +395,7 @@ public class OVRPlayerController : MonoBehaviour
 	{
 		HaltUpdateMovement = haltUpdateMovement;
 	}
-	
+
 	/// <summary>
 	/// Resets the player look rotation when the device orientation is reset.
 	/// </summary>
@@ -403,3 +404,4 @@ public class OVRPlayerController : MonoBehaviour
 		YRotation = 0.0f;
 	}
 }
+
