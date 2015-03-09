@@ -43,6 +43,11 @@ public class ShootingFPC : MonoBehaviour
 		}
 	}
 
+	public void AddAmmo(int n)
+	{
+		ammo += n;
+	}
+
 	private bool CanShoot()
 	{
 		bool canShoot = true;
