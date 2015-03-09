@@ -15,6 +15,6 @@ public class Multipl : MonoBehaviour {
 	
 	void OnMouseUp()
 	{	
-		//Application.LoadLevel("0xydeMulti");
+		Application.LoadLevel("login");
 	}
 }

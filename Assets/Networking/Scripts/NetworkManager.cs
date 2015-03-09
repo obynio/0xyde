@@ -27,6 +27,14 @@ public class NetworkManager : MonoBehaviour {
         ConnectToServer();
     }
 
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			Application.LoadLevel("0xyde Menu");
+		}
+	}
+
     void ConnectToServer()
     {
         PhotonNetwork.ConnectUsingSettings("0xyde_v01");

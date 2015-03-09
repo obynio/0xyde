@@ -21,6 +21,24 @@ public class DataUpDown : MonoBehaviour {
 	public string getUser() { return user; }
 	public string getAccess() { return access; }
 
+	void Start()
+	{
+		Screen.showCursor = true;		
+	}
+
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			Application.LoadLevel("0xyde Menu");
+		}
+
+		if (Input.GetKeyDown(KeyCode.Return))
+		{
+			StartCoroutine(getJsonLogin(login, password));
+		}
+	}
+
 	private IEnumerator getJsonLogin(string login, string password)
 	{
 		// http://blog.paultondeur.com/2010/03/23/tutorial-loading-and-parsing-external-xml-and-json-files-with-unity-part-2-json/
@@ -109,7 +127,7 @@ public class DataUpDown : MonoBehaviour {
 			{
 				// Show red error message
 				GUI.contentColor = Color.red;
-				GUI.Label(new Rect (60, (Screen.height - 400) / 2 + 60, 260, 36), msgErr);
+				GUI.Label(new Rect (60, 150, 260, 36), msgErr);
 			}
 		}
 		GUILayout.EndArea();
