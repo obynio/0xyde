@@ -23,17 +23,10 @@ public class NetworkManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+		Screen.showCursor = false;
         spots = GameObject.FindObjectsOfType<SpawnSpot>();
         ConnectToServer();
     }
-
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			Application.LoadLevel("0xyde Menu");
-		}
-	}
 
     void ConnectToServer()
     {

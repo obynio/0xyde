@@ -28,14 +28,14 @@ public class DataUpDown : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			Application.LoadLevel("0xyde Menu");
-		}
-
 		if (Input.GetKeyDown(KeyCode.Return))
 		{
 			StartCoroutine(getJsonLogin(login, password));
+		}
+
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			Application.LoadLevel("0xyde Menu");
 		}
 	}
 
