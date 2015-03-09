@@ -10,6 +10,7 @@ public class ShootingFPC : MonoBehaviour
 	private float secondsInterval;
 	private float nextShootTime;
 	public bool shooted;
+	public GUISkin theSkin;
 	
 
 	public Rigidbody theBullet;
@@ -40,6 +41,12 @@ public class ShootingFPC : MonoBehaviour
 		{
 			shooted = false;
 		}
+	}
+
+	void OnGUI()
+	{
+		GUI.skin = theSkin;
+		GUI.Box(new Rect(11 * (Screen.width/12) -40, 11 *(Screen.height/12), 100, 55),  " " + ammo.ToString());
 	}
 
 	public void AddAmmo(int n)
