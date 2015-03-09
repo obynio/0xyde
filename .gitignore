@@ -16,7 +16,7 @@ obj/
 *.suo
 /*.sln
 *.user
-*.unityproj
+*.unityprojs
 *.booproj
  
 # ============ #
