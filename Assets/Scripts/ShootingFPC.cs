@@ -12,7 +12,7 @@ public class ShootingFPC : MonoBehaviour
 	public bool shooted;
 	public GUISkin theSkin;
 	
-
+	public GameObject smoke;
 	public Rigidbody theBullet;
 	public int speed;
 	public Transform spawn;
@@ -29,6 +29,7 @@ public class ShootingFPC : MonoBehaviour
 		{
 			audio.Play();
 			Rigidbody clone = Instantiate(theBullet, spawn.transform.position, turner.transform.rotation) as Rigidbody;
+			GameObject smok = Instantiate (smoke, turner.transform.position, spawn.transform.rotation) as GameObject;
 			clone.velocity = transform.TransformDirection(Vector3.forward * speed);
 			nextShootTime = Time.time + secondsInterval;
 
