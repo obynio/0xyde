@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
 	//Composants
 	public Gun gun;
+	public Blast blast;
 	public GameObject fpc;
 	
 	
@@ -83,6 +84,10 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetButtonDown ("Fire1"))
 		{
 			gun.Shoot();
+		}
+		if (Input.GetButtonDown ("Fire2"))
+		{
+			blast.Shoot();
 		}
 	}
 }

@@ -55,6 +55,11 @@ public class ModeSelect : MonoBehaviour
 		mouse = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
 	}
 
+	public void Set_mode()
+	{
+		upMode = !upMode;
+	}
+
 	void OnGUI()
 	{
 		if (upMode)

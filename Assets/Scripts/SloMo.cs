@@ -40,7 +40,9 @@ public class SloMo : MonoBehaviour
 		if(Input.GetButtonDown ("Fire2"))
 		{
 			if(Time.timeScale == 1.0f && currentSlowMo > 0.3f)
-				Time.timeScale = 0.3f;
+			{
+				Time.timeScale = 0.3f;			
+			}
 			
 			else
 				
@@ -53,10 +55,10 @@ public class SloMo : MonoBehaviour
 			currentSlowMo -= Time.deltaTime;
 		}
 
-		GameObject game = GameObject.Find("_Game");
-		ModeSelect modeselect = game.GetComponent<ModeSelect>();
+		//GameObject game = GameObject.Find("_Game");
+		//ModeSelect modeselect = game.GetComponent<ModeSelect>();
 
-		if(currentSlowMo <= 0 || modeselect.upMode == true)
+		if(currentSlowMo <= 0)
 		{
 			currentSlowMo = 0f;
 			Time.timeScale = 1.0f;
