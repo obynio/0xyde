@@ -6,7 +6,7 @@ public class mAI : MonoBehaviour {
 	public Transform leader;
 	public Transform Rot;
 	public float maxDistance = 8;
-	public float minDistance = 2;
+	public float minDistance = 3;
 	private Animator anim;
 	private float attackRepeatTime = 1;
 	private float attackTime = 1;
@@ -14,7 +14,7 @@ public class mAI : MonoBehaviour {
 	public bool kick;
 
 	//private SphereCollider col;
-	//public float fieldOfViewAngle = 110f;
+	public float fieldOfViewAngle = 110f;
 	private bool playerDetected = false;
 	private GameObject player2;
 	
@@ -73,6 +73,8 @@ public class mAI : MonoBehaviour {
 			}
 			else
 			{
+				Quaternion targetRotation = Quaternion.LookRotation(leader.transform.position - transform.position);
+				transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 3f * Time.deltaTime);
 				attack();
 			}
 		}
@@ -80,15 +82,16 @@ public class mAI : MonoBehaviour {
 
 	/// <summary>
 	/// Walk behaviour function
-	/// </summary>
+	/// </summary>qqqq
 	private void walk()
 	{
 		// Initiate NavMesh agent
 		GetComponent<NavMeshAgent> ().destination = leader.position;
 
 		// Start walk motion
-		//anim.SetBool ("attack", false);
+		anim.SetBool ("attack", false);
 		anim.SetBool ("walk", true);
+		GetComponent<NavMeshAgent> ().Resume ();
 		
 	}
 
@@ -99,16 +102,16 @@ public class mAI : MonoBehaviour {
 	{
 		if (Time.time > attackTime)
 		{
-			// Stop NavMesh agent
+			//Stop NavMesh agent
 			//transform.LookAt(leader);
-			// Start attack motion
-			GetComponent<NavMeshAgent> ().ResetPath();
-			//anim.SetBool ("attack", true);
+			//Start attack motion
+			GetComponent<NavMeshAgent> ().Stop();
+			anim.SetBool ("attack", true);
 
-			//PlayerStats other = (PlayerStats)player.GetComponent (typeof(PlayerStats));
-			//other.ApplyDamage(10);
+			PlayerStats other = (PlayerStats)player.GetComponent (typeof(PlayerStats));
+			other.ApplyDamage(10);
 
-			//Debug.Log("Attack");
+			Debug.Log("Attack");
 			attackTime = Time.time + attackRepeatTime;
 		}
 	}
@@ -154,11 +157,11 @@ public class mAI : MonoBehaviour {
 	private void die()
 	{
 		// Stop NavMesh agent (unless you want self-moving bodies..)
-		GetComponent<NavMeshAgent> ().ResetPath();
+		GetComponent<NavMeshAgent> ().Stop();
 
 		// Start dead motion
 		anim.SetBool ("alive", false);
-		(gameObject.GetComponent(typeof(BoxCollider)) as BoxCollider).isTrigger = true;
+		(gameObject.GetComponent(typeof(CapsuleCollider)) as CapsuleCollider).isTrigger = true;
 		eyes.enabled = false;
 		Debug.Log("You've been targeted for termination");
 	}
@@ -168,17 +171,17 @@ public class mAI : MonoBehaviour {
 		// If the player has entered the trigger sphere...
 		if(other.gameObject == player2)
 		{
-			//Debug.Log("sight");
+			Debug.Log("sight");
 
-			//Vector3 direction = player2.transform.position - transform.position;
-			//float angle = Vector3.Angle(direction, transform.forward);
+			Vector3 direction = player2.transform.position - transform.position;
+			float angle = Vector3.Angle(direction, transform.forward);
 
-			//if(angle < fieldOfViewAngle * 0.5f)
-			//{
-				//Debug.Log("seen");
+			if(angle < fieldOfViewAngle * 0.5f)
+			{
+				Debug.Log("seen");
 				
 				playerDetected = true;
-			//}
+			}
 		}
 	}
 

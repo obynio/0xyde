@@ -21,37 +21,45 @@ public class CutAttack : MonoBehaviour {
 	{
 		if (Input.GetButtonDown ("Fire1")&& CanShoot())
 		{
-			RaycastHit hit;
-			Ray ray = new Ray(center.position, transform.forward);
-			//Debug.DrawLine(transform.position, out hit, Color.red);
-			if(Physics.Raycast(ray, out hit))
-			{
-				if (hit.collider.tag == "Zombie")
-				{
-					hitdistance = hit.distance;
-					//Debug.DrawLine (center.position, hit.point, Color.cyan);
-					if(hit.distance < 2.5f)
-					{
-						Debug.Log("Working bitch");
-						GameObject go = hit.collider.gameObject;
-						mAI other = (mAI)go.GetComponent (typeof(mAI));
-						other.hurt();
+			StartCoroutine("ATK");
+		}
+	}
 
-						nextShootTime = Time.time + secondsInterval;
-						shooted = true;
-					}
-					else
-					{
-						shooted = false;
-					}
+	IEnumerator ATK()
+	{
+		yield return new WaitForSeconds(0.2f);
+		RaycastHit hit;
+		Ray ray = new Ray(center.position, transform.forward);
+		//Debug.DrawLine(transform.position, out hit, Color.red);
+		if(Physics.Raycast(ray, out hit))
+		{
+			if (hit.collider.tag == "Zombie")
+			{
+				hitdistance = hit.distance;
+				//Debug.DrawLine (center.position, hit.point, Color.cyan);
+				if(hit.distance < 2.5f)
+				{
+					Debug.Log("Working bitch");
+					GameObject go = hit.collider.gameObject;
+					mAI other = (mAI)go.GetComponent (typeof(mAI));
+					other.hurt();
+					
+					nextShootTime = Time.time + secondsInterval;
+					shooted = true;
 				}
 				else
 				{
 					shooted = false;
 				}
 			}
+			else
+			{
+				shooted = false;
+			}
 		}
+
 	}
+
 	private bool CanShoot()
 	{
 		bool canShoot = true;

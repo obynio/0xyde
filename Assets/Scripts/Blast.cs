@@ -26,12 +26,13 @@ public class Blast : MonoBehaviour {
 	{
 		if(CanShoot())
 		{
-			Ray ray = new Ray(spawn.position,spawn.forward);
-			RaycastHit hit;
+			//Ray ray = new Ray(new Vector3(spawn.position.x + 0.7f, spawn.position.y, spawn.position.z),spawn.forward);
+			
+			//RaycastHit hit;
 
 			Instantiate (blast, spawnBL.transform.position, spawn.transform.rotation);
 			
-			float shotDistance = 5;
+			/*float shotDistance = 5;
 			
 			if (Physics.Raycast(ray,out hit, shotDistance))
 			{
@@ -43,13 +44,14 @@ public class Blast : MonoBehaviour {
 					mAI other = (mAI)go.GetComponent (typeof(mAI));
 					other.hurt();
 				}
-			}
+			}*/
 			
 			nextShootTime = Time.time + secondsInterval;
 			
 			//audio.Play();
 			
 			//StartCoroutine("RenderTracer", ray.direction * shotDistance);
+			
 		}
 	}
 	

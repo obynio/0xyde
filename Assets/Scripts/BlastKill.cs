@@ -2,15 +2,15 @@
 using System.Collections;
 
 public class BlastKill : MonoBehaviour {
-
-	void OnTriggerEnter (Collider c)
+	public Transform Prefab;
+	
+	void OnTriggerEnter (Collider coll)
 	{
 		Debug.Log ("Trigger ?");
-		Debug.Log (c);
-		
-		if(c.gameObject.tag == "Zombie")
+		Debug.Log (coll.name);
+		if (coll.name == "Zombie" && coll.GetType() == typeof(CapsuleCollider))
 		{
-			GameObject go = c.collider.gameObject;
+			GameObject go = coll.collider.gameObject;
 			mAI other = (mAI)go.GetComponent (typeof(mAI));
 			other.hurt();
 		}
