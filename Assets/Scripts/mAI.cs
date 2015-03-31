@@ -171,15 +171,12 @@ public class mAI : MonoBehaviour {
 		// If the player has entered the trigger sphere...
 		if(other.gameObject == player2)
 		{
-			Debug.Log("sight");
 
 			Vector3 direction = player2.transform.position - transform.position;
 			float angle = Vector3.Angle(direction, transform.forward);
 
 			if(angle < fieldOfViewAngle * 0.5f)
 			{
-				Debug.Log("seen");
-				
 				playerDetected = true;
 			}
 		}
