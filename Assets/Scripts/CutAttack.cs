@@ -10,6 +10,8 @@ public class CutAttack : MonoBehaviour {
 	public bool shooted;
 	public float hitdistance;
 	public Transform center;
+	public GameObject blood;
+	public Transform blo;
 
 	void Start()
 	{
@@ -43,6 +45,8 @@ public class CutAttack : MonoBehaviour {
 					GameObject go = hit.collider.gameObject;
 					mAI other = (mAI)go.GetComponent (typeof(mAI));
 					other.hurt();
+					Instantiate (blood, blo.transform.position, blo.transform.rotation);
+					
 					
 					nextShootTime = Time.time + secondsInterval;
 					shooted = true;
