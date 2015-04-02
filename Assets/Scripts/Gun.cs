@@ -5,6 +5,7 @@ using System.Collections;
 public class Gun : MonoBehaviour {
 
 	public float rpm;
+	public GameObject blood;
 
 	//composentes
 	public Transform spawn;
@@ -37,6 +38,7 @@ public class Gun : MonoBehaviour {
 					GameObject go = hit.collider.gameObject;
 					mAI other = (mAI)go.GetComponent (typeof(mAI));
 					other.hurt();
+					Instantiate (blood, hit.transform.position, transform.rotation);
 				}
 			}
 
