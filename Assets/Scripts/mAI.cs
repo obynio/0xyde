@@ -12,6 +12,8 @@ public class mAI : MonoBehaviour {
 	private float attackTime = 1;
 	public Renderer eyes;
 	public bool kick;
+	public GameObject go;
+	
 
 	//private SphereCollider col;
 	public float fieldOfViewAngle = 110f;
@@ -164,6 +166,19 @@ public class mAI : MonoBehaviour {
 		(gameObject.GetComponent(typeof(CapsuleCollider)) as CapsuleCollider).isTrigger = true;
 		eyes.enabled = false;
 		Debug.Log("You've been targeted for termination");
+
+		//down zombies nb
+		music other3 = (music)go.GetComponent (typeof(music));
+		other3.down_zombie();
+	}
+
+	void OnTriggerEnter (Collider c)
+	{
+		if (c == player.collider) 
+		{
+			music other2 = (music)go.GetComponent (typeof(music));
+			other2.up_music ();
+		}
 	}
 
 	void OnTriggerStay (Collider other)
@@ -192,6 +207,9 @@ public class mAI : MonoBehaviour {
 			GetComponent<NavMeshAgent> ().ResetPath();
 			anim.SetBool ("walk", false);
 			Debug.Log("out");
+
+			music otherr = (music)go.GetComponent (typeof(music));
+			otherr.down_music();
 		}
 	}
 

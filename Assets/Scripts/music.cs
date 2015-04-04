@@ -5,37 +5,47 @@ using System.Collections;
 public class music : MonoBehaviour 
 {
 	public int getmusic;
-	private bool bullshit;
-
+	public int nbzombi;
 	// Use this for initialization
 	void Start () 
 	{
 		getmusic = 0;
-		bullshit = true;
+		nbzombi = 6;
 	}
 	
 	// Update is called once per frame
-	void Update() 
+	void Update () 
 	{
-		if (getmusic >= 0 && bullshit) 
+		if (getmusic == 1 && nbzombi != 0) 
 		{
-			//audio.Play();
-			bullshit = false;
+			audio.Play();
+			getmusic = getmusic + 1;
 		}
-		if (getmusic == 0)
+		if (getmusic == 0 || nbzombi == 0) 
 		{
-			//audio.Stop();
-			bullshit = true;
+			audio.Stop();
 		}
 	}
-
+	
 	public void up_music()
 	{
-		getmusic++;
+		getmusic = getmusic+1;
 	}
-
+	
 	public void down_music()
 	{
-		getmusic--;
+		if (getmusic == 2) 
+		{
+			getmusic = getmusic - 2;
+		} 
+		else
+		{
+			getmusic = getmusic - 1;
+		}
+	}
+	
+	public void down_zombie()
+	{
+		nbzombi = nbzombi - 1;
 	}
 }
