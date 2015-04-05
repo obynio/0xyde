@@ -41,7 +41,6 @@ public class CutAttack : MonoBehaviour {
 				//Debug.DrawLine (center.position, hit.point, Color.cyan);
 				if(hit.distance < 2.5f)
 				{
-					Debug.Log("Working bitch");
 					GameObject go = hit.collider.gameObject;
 					mAI other = (mAI)go.GetComponent (typeof(mAI));
 					other.hurt();

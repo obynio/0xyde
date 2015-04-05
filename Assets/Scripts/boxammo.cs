@@ -10,7 +10,6 @@ public class boxammo : MonoBehaviour
 	// Update is called once per frame
 	void OnTriggerEnter (Collider c)
 	{
-		Debug.Log ("working");
 		
 		if(c.gameObject == player)
 		{
