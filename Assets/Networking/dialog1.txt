@@ -1,0 +1,19 @@
+<time/>000.000|<b>Conners:</b> Jessica... Jessica, can you hear me? It's Conners. Jessie, I can't get a reading on your location. Talk to me.
+<time/>005.000|<trigger/>Cube-Grow-
+<time/>007.370|<b>Rainer:</b> Ugh... Yeah, yeah I'm here. I hear you Conners.
+<time/>012.590|<b>Conners:</b> Jessica, listen to me. I can't get a lock on your location. There's something wrong with your positioning system
+<time/>018.230|<b>Conners:</b> but I still have a solid data connection with you. I'm gonna figure out where you are and get you back to Foundation.
+<time/>023.500|<b>Conners:</b> Stay put for a minute.
+<time/>024.930|<break/>
+<time/>025.480|[BEEP BEEP BEEP]
+<time/>026.480|<break/>
+<time/>026.930|<b>Rainer:</b> Ahh... Shit...
+<time/>028.620|<b>Conners:</b> What? What's wrong?
+<time/>029.760|<b>Rainer:</b> My oxygen... I've got maybe 10 minutes left.
+<time/>033.930|<b>Conners:</b> 10 minutes? That's practically an eternity. Just relax. We're gonna get you home, but first I need you to sit tight.
+<time/>040.730|<b>Rainer:</b> Okay... [sigh] Okay...
+<time/>044.270|<b>Conners:</b> Alright, I need some kind of visual. Data feed is still up, but it's too weak for video.
+<time/>049.130|<b>Conners:</b> I'm gonna need you to take a photo of some nearby landmarks and upload it to me.
+<time/>053.300|<b>Conners:</b> If you're close enough to base I should be able to recognize your location. Think you can do that?
+<time/>057.890|<b>Rainer:</b> Yeah, I can do that.
+<time/>060.190|<b>Conners:</b> Good. You should get the sun in the photo too. That will help me.
