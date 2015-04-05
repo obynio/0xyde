@@ -1,0 +1,11 @@
+<time/>000.000|<b>MIGGEE:</b> Initialisation du kernel..
+<time/>002.660|<b>MIGGEE:</b> 29 février 2142..
+<time/>005.920|<b>MIGGEE:</b> Protocole de réveil activé..
+<time/>008.640|<b>MIGGEE:</b> Démarrage module vocal..
+<time/>011.700|<b>MIGGEE:</b> Quelqu'un m'entend-t-il ?
+<time/>013.280|<b>MIGGEE:</b> Foutu transcodeur..
+<time/>016.020|<b>MIGGEE:</b> Ah enfin ! Je suis l'intelligence artificielle MIGEE version 5. quelque chose.. Bref, on s'en fout..
+<time/>024.290|<b>MIGGEE:</b> Oups, j'ai failli oublier. T'es resté en létargie pendant un siècle ! Sacré sommeil !
+<time/>029.860|<b>MIGGEE:</b> Bref, pour l'anecdote, on s'est fait envahir, on a perdu et la race humaine est au bord de l'extinction.
+<time/>036.200|<b>MIGGEE:</b> Mais voyons les côtés positifs ! Le taux de criminalité est passé en dessous des 0% et le déficit de la sécu est comblé.
+<time/>043.640|[END TRANSMISSION]
