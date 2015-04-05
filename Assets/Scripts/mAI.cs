@@ -174,7 +174,7 @@ public class mAI : MonoBehaviour {
 
 	void OnTriggerEnter (Collider c)
 	{
-		if (c == player.collider) 
+		if (c.tag == "Player") 
 		{
 			music other2 = (music)go.GetComponent (typeof(music));
 			other2.up_music ();

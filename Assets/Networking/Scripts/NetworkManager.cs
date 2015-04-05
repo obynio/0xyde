@@ -101,7 +101,7 @@ public class NetworkManager : MonoBehaviour {
 
         SpawnSpot mySpot = spots[playerList.Length % 2];
 
-        GameObject dpc = PhotonNetwork.Instantiate("dpc", mySpot.transform.position, mySpot.transform.rotation, 0);
+        GameObject dpc = PhotonNetwork.Instantiate("LenzoPrefab", mySpot.transform.position, mySpot.transform.rotation, 0);
         //((MonoBehaviour)dpc.GetComponent("FPSInputController")).enabled = true;
         //((MonoBehaviour)dpc.GetComponent("MouseLook")).enabled = true;
         dpc.GetComponent<FPSInputController>().enabled = true;

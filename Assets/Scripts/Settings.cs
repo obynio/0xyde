@@ -4,6 +4,7 @@ using System.Collections;
 public class Settings : MonoBehaviour {
 	
 	public Camera cam;
+	//public Quaternion Fin = new Quaternion(1,1,1,1);
 
 	void OnMouseEnter()
 	{
@@ -17,7 +18,8 @@ public class Settings : MonoBehaviour {
 	
 	void OnMouseUp()
 	{	
-		cam.transform.rotation = Quaternion.Euler (0,100,0);
+		//cam.transform.rotation = Quaternion.Slerp (new Quaternion (0, 0, 0, 0), Fin, 0.0000005F);
+		cam.transform.rotation = Quaternion.Euler (0, 100, 0);
 
 	}
 }
