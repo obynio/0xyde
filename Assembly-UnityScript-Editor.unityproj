@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{7FF32D06-87C7-C99E-FF41-028575A169D1}</ProjectGuid>
+	<ProjectGuid>{6433F058-FCC8-B367-F4B4-0FB4977233A8}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -39,17 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-<<<<<<< HEAD
 	  <HintPath>D:/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
 	  <HintPath>D:/Editor/Data/Managed/UnityEditor.dll</HintPath>
-=======
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
-	</Reference>
-	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
->>>>>>> cb79c0545591d63c19afbe7e411bb57c81a0df67
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -157,7 +150,6 @@
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendForBloom.shader" />
  <Reference Include="UnityEngine.UI">
-<<<<<<< HEAD
  <HintPath>D:/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
@@ -174,35 +166,17 @@
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>D:/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
-=======
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/Editor/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="LitJson">
- <HintPath>D:/dev/unity/0xyde/Assets/Networking/Scripts/LitJson.dll</HintPath>
- </Reference>
- <Reference Include="Newtonsoft.Json">
- <HintPath>D:/dev/unity/0xyde/Assets/Photon Unity Networking/Editor/PhotonNetwork/Newtonsoft.Json.dll</HintPath>
- </Reference>
- <Reference Include="Photon3Unity3D">
- <HintPath>D:/dev/unity/0xyde/Assets/Plugins/Photon3Unity3D.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.Graphs">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
->>>>>>> cb79c0545591d63c19afbe7e411bb57c81a0df67
  </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{AE356D49-924A-0950-B641-C8A6393A4B01}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{0CD4BC62-1A9B-6535-6D2E-E70AAB743104}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{FCE52DB0-F0D1-586B-08A7-09925BD349C6}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+      <Project>{366D0E99-DCD0-1484-4EA8-8667EA1A0B55}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{1A4B0E51-D689-6128-F144-01547001DAF8}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{2B66C293-CA0D-0074-7FC5-828720CF5408}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript.unityproj">
-      <Project>{C896A0BB-728B-A69D-71F9-6FA481B19D87}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
+      <Project>{98641F92-2336-AC8E-A125-200F151AC200}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
