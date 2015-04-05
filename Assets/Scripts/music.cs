@@ -9,8 +9,6 @@ public class music : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		getmusic = 0;
-		nbzombi = 6;
 	}
 	
 	// Update is called once per frame
