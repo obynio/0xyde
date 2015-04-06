@@ -113,7 +113,6 @@ public class mAI : MonoBehaviour {
 			PlayerStats other = (PlayerStats)player.GetComponent (typeof(PlayerStats));
 			other.ApplyDamage(10);
 
-			Debug.Log("Attack");
 			attackTime = Time.time + attackRepeatTime;
 		}
 	}
@@ -165,7 +164,6 @@ public class mAI : MonoBehaviour {
 		anim.SetBool ("alive", false);
 		(gameObject.GetComponent(typeof(CapsuleCollider)) as CapsuleCollider).isTrigger = true;
 		eyes.enabled = false;
-		Debug.Log("You've been targeted for termination");
 
 		//down zombies nb
 		music other3 = (music)go.GetComponent (typeof(music));
@@ -206,7 +204,6 @@ public class mAI : MonoBehaviour {
 			playerDetected = false;
 			GetComponent<NavMeshAgent> ().ResetPath();
 			anim.SetBool ("walk", false);
-			Debug.Log("out");
 
 			music otherr = (music)go.GetComponent (typeof(music));
 			otherr.down_music();
