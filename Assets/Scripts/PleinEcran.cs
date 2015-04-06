@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Multipl : MonoBehaviour {
+public class PleinEcran : MonoBehaviour {
 
 	void Start()
 	{
 		JouerSimple.anglais = true;
-		}
+	}
+	
 	void Update()
 	{
-		transform.renderer.enabled = JouerSimple.anglais;
-		transform.collider.enabled = JouerSimple.anglais;
+		transform.renderer.enabled = !JouerSimple.anglais;
+		transform.collider.enabled = !JouerSimple.anglais;
 	}
-
+	
 	void OnMouseEnter()
 	{
 		transform.localScale *= 1.1f;
@@ -25,6 +26,6 @@ public class Multipl : MonoBehaviour {
 	
 	void OnMouseUp()
 	{	
-		Application.LoadLevel("login");
+		Screen.fullScreen = !Screen.fullScreen;
 	}
 }

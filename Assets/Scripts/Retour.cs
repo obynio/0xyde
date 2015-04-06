@@ -13,12 +13,15 @@ public class Retour : MonoBehaviour {
 
 	void Start()
 	{
+		JouerSimple.anglais = true;
 		Screen.showCursor = false;
 
 	}
 	
 	void Update()
 	{
+		transform.renderer.enabled = JouerSimple.anglais;
+		transform.collider.enabled = JouerSimple.anglais;
 		mouse = new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y);
 	}
 	

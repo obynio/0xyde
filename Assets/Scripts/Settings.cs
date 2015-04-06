@@ -4,7 +4,17 @@ using System.Collections;
 public class Settings : MonoBehaviour {
 	
 	public Camera cam;
-	//public Quaternion Fin = new Quaternion(1,1,1,1);
+	//public Quaternion Debut = new Quaternion (cam.transform.rotation.x, cam.transform.rotation.y, cam.transform.rotation.z,cam.transform.rotation.w);
+	//public Quaternion Fin = new Quaternion(cam.transform.rotation.x, (cam.transform.rotation.y-100), cam.transform.rotation.z,cam.transform.rotation.w)	;
+	void Start()
+	{
+		JouerSimple.anglais = true;
+	}
+
+	void Update () {
+		transform.renderer.enabled = JouerSimple.anglais;
+		transform.collider.enabled = JouerSimple.anglais;
+	}
 
 	void OnMouseEnter()
 	{
@@ -18,8 +28,9 @@ public class Settings : MonoBehaviour {
 	
 	void OnMouseUp()
 	{	
-		//cam.transform.rotation = Quaternion.Slerp (new Quaternion (0, 0, 0, 0), Fin, 0.0000005F);
-		cam.transform.rotation = Quaternion.Euler (0, 100, 0);
 
+		cam.transform.rotation = Quaternion.Slerp (cam.transform.rotation, Quaternion.Euler (0, 100F, 0), 1F);
+						//cam.transform.rotation = Quaternion.Euler (0, 100F, 0);
+				
 	}
 }

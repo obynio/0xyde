@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Multipl : MonoBehaviour {
+public class JouerMulti : MonoBehaviour {
 
 	void Start()
 	{
 		JouerSimple.anglais = true;
-		}
-	void Update()
-	{
-		transform.renderer.enabled = JouerSimple.anglais;
-		transform.collider.enabled = JouerSimple.anglais;
+	}
+	void Update () {
+		transform.renderer.enabled = !JouerSimple.anglais;
+		transform.collider.enabled = !JouerSimple.anglais;
 	}
 
 	void OnMouseEnter()

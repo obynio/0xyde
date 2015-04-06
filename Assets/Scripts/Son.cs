@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Sound : MonoBehaviour {
-	
+public class Son : MonoBehaviour {
+
 	bool mute;
 	
 	void Start()
@@ -10,11 +10,11 @@ public class Sound : MonoBehaviour {
 		JouerSimple.anglais = true;
 		mute = false;
 	}
-
+	
 	void Update()
 	{
-		transform.collider.enabled = JouerSimple.anglais;
-		transform.renderer.enabled = JouerSimple.anglais;
+		transform.collider.enabled = !JouerSimple.anglais;
+		transform.renderer.enabled = !JouerSimple.anglais;
 	}
 	void OnMouseEnter()
 	{
@@ -26,14 +26,14 @@ public class Sound : MonoBehaviour {
 		transform.localScale *= 0.909090f;
 	}
 	
-
+	
 	void OnMouseUp()
 	{	
 		if (mute == false)
 			AudioListener.volume = 0;
 		if (mute == true)
 			AudioListener.volume = 1;
-
+		
 		mute = !mute;
 	}
 }

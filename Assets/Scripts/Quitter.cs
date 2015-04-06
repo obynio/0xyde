@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Multipl : MonoBehaviour {
+public class Quitter : MonoBehaviour {
 
 	void Start()
 	{
 		JouerSimple.anglais = true;
-		}
-	void Update()
-	{
-		transform.renderer.enabled = JouerSimple.anglais;
-		transform.collider.enabled = JouerSimple.anglais;
+	}
+	void Update () {
+		transform.renderer.enabled = !JouerSimple.anglais;
+		transform.collider.enabled = !JouerSimple.anglais;
 	}
 
 	void OnMouseEnter()
@@ -25,6 +24,6 @@ public class Multipl : MonoBehaviour {
 	
 	void OnMouseUp()
 	{	
-		Application.LoadLevel("login");
+		Application.Quit();
 	}
 }

@@ -1,18 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Multipl : MonoBehaviour {
-
+public class Language : MonoBehaviour {
 	void Start()
 	{
 		JouerSimple.anglais = true;
-		}
+	}
 	void Update()
 	{
 		transform.renderer.enabled = JouerSimple.anglais;
 		transform.collider.enabled = JouerSimple.anglais;
 	}
-
 	void OnMouseEnter()
 	{
 		transform.localScale *= 1.1f;
@@ -22,9 +20,8 @@ public class Multipl : MonoBehaviour {
 	{
 		transform.localScale *= 0.909090f;
 	}
-	
 	void OnMouseUp()
-	{	
-		Application.LoadLevel("login");
+	{
+		JouerSimple.anglais = !JouerSimple.anglais;
 	}
 }

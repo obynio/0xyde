@@ -2,10 +2,17 @@
 using System.Collections;
 
 public class FullScreen : MonoBehaviour {
-
+	
 	void Start()
 	{
+		JouerSimple.anglais = true;
 		Screen.showCursor = false;
+	}
+
+	void Update()
+	{
+		transform.renderer.enabled = JouerSimple.anglais;
+		transform.collider.enabled = JouerSimple.anglais;
 	}
 
 	void OnMouseEnter()
