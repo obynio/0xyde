@@ -10,6 +10,8 @@ public class ModeSelect : MonoBehaviour
 	public GameObject up;
 	public GameObject cam1;
 	public Texture HUD;
+	public Texture HUDFPS;
+	
 
 	private Vector2 mouse;
 	private int w = 32;
@@ -67,6 +69,10 @@ public class ModeSelect : MonoBehaviour
 		{
 			GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursor);
 			GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), HUD);
+		}
+		else
+		{
+			GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), HUDFPS);
 		}
 	}
 }

@@ -6,8 +6,6 @@ public class BlastKill : MonoBehaviour {
 	
 	void OnTriggerEnter (Collider coll)
 	{
-		Debug.Log ("Trigger ?");
-		Debug.Log (coll.name);
 		if (coll.name == "Zombie" && coll.GetType() == typeof(CapsuleCollider))
 		{
 			GameObject go = coll.collider.gameObject;
