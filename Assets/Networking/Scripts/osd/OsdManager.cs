@@ -19,7 +19,6 @@ public class OsdManager : MonoBehaviour {
 	public List<string> subtitleText = new List<string>();
 
 	private int nextSubtitle = 0;
-
 	private string displaySubtitle;
 
 	//GUI
@@ -44,17 +43,19 @@ public class OsdManager : MonoBehaviour {
 		
 		dialogueAudio = passedClip;
 
+
 		//Reset all lists
 		subtitleLines = new List<string>();
 		subtitleTimingStrings = new List<string>();
 		subtitleTimings = new List<float>();
-		subtitleText = new List<string>();
+        subtitleText = new List<string>();
+
 
 		nextSubtitle = 0;
 
 		//Get everything from the text file
 		TextAsset temp = Resources.Load("Dialogues/" + dialogueAudio.name) as TextAsset;
-		fileLines = temp.text.Split('\n');
+        fileLines = temp.text.Split('\n');
 
 		//Split subtitle related lines into different lists
 		foreach(string line in fileLines)
@@ -65,6 +66,7 @@ public class OsdManager : MonoBehaviour {
 		//Split out our subtitle elements
 		for(int cnt = 0; cnt < subtitleLines.Count; cnt++)
 		{
+
 			string[] splitTemp = subtitleLines[cnt].Split('|');
 			subtitleTimingStrings.Add(splitTemp[0]);
 			subtitleTimings.Add(float.Parse(CleanTimeString(subtitleTimingStrings[cnt])));
@@ -77,6 +79,7 @@ public class OsdManager : MonoBehaviour {
 			displaySubtitle = subtitleText[0];
 		}
 
+
 		//Set and play the audio clip
 		audio.clip = dialogueAudio;
 		audio.Play();
@@ -85,6 +88,7 @@ public class OsdManager : MonoBehaviour {
 	//Remove all characters that are not part of the timing float
 	private string CleanTimeString(string timeString)
 	{
+
 		Regex digitsOnly = new Regex(@"[^\d+(\.\d+)*$]");
 		return digitsOnly.Replace(timeString, "");
 	}
@@ -94,6 +98,7 @@ public class OsdManager : MonoBehaviour {
 		//Make sure we are using a proper dialogueAudio file
 		if(dialogueAudio != null && audio.clip.name == dialogueAudio.name)
 		{
+
 			//Check for <break/> or negative nextSubtitle
 			if((nextSubtitle > 0) && (!subtitleText[nextSubtitle - 1].Contains("<break/>")))
 			{
@@ -111,6 +116,7 @@ public class OsdManager : MonoBehaviour {
 				GUI.contentColor = Color.white;
 				GUI.Label(new Rect(Screen.width/2 - size.x/2, Screen.height/1.25f - size.y, size.x, size.y), displaySubtitle, subtitleStyle);
 			}
+
 
 			//Increment nextSubtitle when we hit the associated time point
 			if(nextSubtitle < subtitleText.Count)
