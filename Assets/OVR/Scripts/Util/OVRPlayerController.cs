@@ -90,8 +90,8 @@ public class OVRPlayerController : MonoBehaviour
 	private float RotationScaleMultiplier = 1.0f;
 	private bool  SkipMouseRotation = false;
 	private bool  HaltUpdateMovement = false;
-	//private bool prevHatLeft = false;
-	//private bool prevHatRight = false;
+	private bool prevHatLeft = false;
+	private bool prevHatRight = false;
 	private float SimulationRate = 60f;
 
 	void Awake()
@@ -204,10 +204,9 @@ public class OVRPlayerController : MonoBehaviour
 	{
 		if (HaltUpdateMovement)
 			return;
-		if (Input.GetButtonDown ("Jump")) Jump();
 
-		bool moveForward = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.UpArrow);
-		bool moveLeft = Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow);
+		bool moveForward = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
+		bool moveLeft = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow);
 		bool moveRight = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
 		bool moveBack = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
 
@@ -232,8 +231,8 @@ public class OVRPlayerController : MonoBehaviour
 			MoveScale = 0.70710678f;
 
 		// No positional movement if we are in the air
-		//if (!Controller.isGrounded)
-			//MoveScale = 0.0f;
+		if (!Controller.isGrounded)
+			MoveScale = 0.0f;
 
 		MoveScale *= SimulationRate * Time.deltaTime;
 
@@ -242,7 +241,7 @@ public class OVRPlayerController : MonoBehaviour
 
 		// Run!
 		if (dpad_move || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-			moveInfluence *= 1f;
+			moveInfluence *= 2.0f;
 
 		Quaternion ort = transform.rotation;
 		Vector3 ortEuler = ort.eulerAngles;
@@ -258,28 +257,28 @@ public class OVRPlayerController : MonoBehaviour
 		if (moveRight)
 			MoveThrottle += ort * (transform.lossyScale.x * moveInfluence * BackAndSideDampen * Vector3.right);
 
-		//bool curHatLeft = OVRGamepadController.GPC_GetButton(OVRGamepadController.Button.LeftShoulder);
+		bool curHatLeft = OVRGamepadController.GPC_GetButton(OVRGamepadController.Button.LeftShoulder);
 
 		Vector3 euler = transform.rotation.eulerAngles;
 
-		/*if (curHatLeft && !prevHatLeft)
-			euler.y -= RotationRatchet;*/
+		if (curHatLeft && !prevHatLeft)
+			euler.y -= RotationRatchet;
 
-		//prevHatLeft = curHatLeft;
+		prevHatLeft = curHatLeft;
 
-		//bool curHatRight = OVRGamepadController.GPC_GetButton(OVRGamepadController.Button.RightShoulder);
+		bool curHatRight = OVRGamepadController.GPC_GetButton(OVRGamepadController.Button.RightShoulder);
 
-		/*if(curHatRight && !prevHatRight)
-			euler.y += RotationRatchet;*/
+		if(curHatRight && !prevHatRight)
+			euler.y += RotationRatchet;
 
-		//prevHatRight = curHatRight;
+		prevHatRight = curHatRight;
 
 		//Use keys to ratchet rotation
-		/*if (Input.GetKeyDown(KeyCode.Q))
+		if (Input.GetKeyDown(KeyCode.Q))
 			euler.y -= RotationRatchet;
 
 		if (Input.GetKeyDown(KeyCode.E))
-			euler.y += RotationRatchet;*/
+			euler.y += RotationRatchet;
 
 		float rotateInfluence = SimulationRate * Time.deltaTime * RotationAmount * RotationScaleMultiplier;
 
@@ -289,7 +288,7 @@ public class OVRPlayerController : MonoBehaviour
 		moveInfluence = SimulationRate * Time.deltaTime * Acceleration * 0.1f * MoveScale * MoveScaleMultiplier;
 
 #if !UNITY_ANDROID // LeftTrigger not avail on Android game pad
-		//moveInfluence *= 1.0f + OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.LeftTrigger);
+		moveInfluence *= 1.0f + OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.LeftTrigger);
 #endif
 
 		float leftAxisX = OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.LeftXAxis);
@@ -342,7 +341,7 @@ public class OVRPlayerController : MonoBehaviour
 		if (!Controller.isGrounded)
 			return false;
 
-		MoveThrottle += new Vector3(MoveThrottle.x, JumpForce, MoveThrottle.z);
+		MoveThrottle += new Vector3(0, JumpForce, 0);
 
 		return true;
 	}
