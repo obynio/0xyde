@@ -9,7 +9,10 @@ public class Gun : MonoBehaviour {
 
 	//composentes
 	public Transform spawn;
+	public Transform smokespawn;
 	private LineRenderer tracer;
+	public GameObject smoke;
+
 
 	private float secondsInterval;
 	private float nextShootTime;
@@ -26,12 +29,13 @@ public class Gun : MonoBehaviour {
 		{
 			Ray ray = new Ray(spawn.position,spawn.forward);
 			RaycastHit hit;
-
+			Instantiate (smoke, smokespawn.transform.position, spawn.transform.rotation);
 			float shotDistance = 20;
 
 			if (Physics.Raycast(ray,out hit, shotDistance))
 			{
 				shotDistance = hit.distance;
+				
 				if (hit.collider.tag == "Zombie")
 				{
 					GameObject go = hit.collider.gameObject;
