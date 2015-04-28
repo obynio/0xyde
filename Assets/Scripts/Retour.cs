@@ -13,7 +13,6 @@ public class Retour : MonoBehaviour {
 
 	void Start()
 	{
-		JouerSimple.anglais = true;
 		Screen.showCursor = false;
 
 	}

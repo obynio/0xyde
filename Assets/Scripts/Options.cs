@@ -5,11 +5,6 @@ public class Options : MonoBehaviour {
 	public Camera cam;
 
 	// Update is called once per frame
-	void Start()
-	{
-		JouerSimple.anglais = true;
-	}
-
 	void Update () {
 		transform.renderer.enabled = !JouerSimple.anglais;
 		transform.collider.enabled = !JouerSimple.anglais;

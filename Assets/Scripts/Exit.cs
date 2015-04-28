@@ -2,11 +2,7 @@
 using System.Collections;
 
 public class Exit : MonoBehaviour {
-
-	void Start()
-	{
-		JouerSimple.anglais = true;
-	}
+	
 	void Update () {
 		transform.renderer.enabled = JouerSimple.anglais;
 		transform.collider.enabled = JouerSimple.anglais;

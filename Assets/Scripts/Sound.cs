@@ -2,13 +2,11 @@
 using System.Collections;
 
 public class Sound : MonoBehaviour {
-	
-	bool mute;
+
 	
 	void Start()
 	{
-		JouerSimple.anglais = true;
-		mute = false;
+		AudioListener.volume = PlayerPrefs.GetInt("Volume",1); //1 is the default value of the volume
 	}
 
 	void Update()
@@ -28,12 +26,9 @@ public class Sound : MonoBehaviour {
 	
 
 	void OnMouseUp()
-	{	
-		if (mute == false)
-			AudioListener.volume = 0;
-		if (mute == true)
-			AudioListener.volume = 1;
-
-		mute = !mute;
+	{
+		PlayerPrefs.SetInt ("Volume", (PlayerPrefs.GetInt ("Volume") + 1) % 2); // renvoie 1 quand volume est à 0, et renvoie 0 quand volume est à 1
+		AudioListener.volume = PlayerPrefs.GetInt ("Volume");
+		PlayerPrefs.Save ();
 	}
 }

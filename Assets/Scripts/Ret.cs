@@ -6,12 +6,6 @@ public class Ret : MonoBehaviour {
 	public Camera cam;
 	private Vector3 q = new Vector3(-8F,110F,0);
 	
-	
-	void Start()
-	{
-		JouerSimple.anglais = true;
-	}
-	
 	void Update()
 	{
 		transform.renderer.enabled = !JouerSimple.anglais;

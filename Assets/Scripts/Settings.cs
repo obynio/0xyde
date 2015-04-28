@@ -6,10 +6,6 @@ public class Settings : MonoBehaviour {
 	public Camera cam;
 	//public Quaternion Debut = new Quaternion (cam.transform.rotation.x, cam.transform.rotation.y, cam.transform.rotation.z,cam.transform.rotation.w);
 	//public Quaternion Fin = new Quaternion(cam.transform.rotation.x, (cam.transform.rotation.y-100), cam.transform.rotation.z,cam.transform.rotation.w)	;
-	void Start()
-	{
-		JouerSimple.anglais = true;
-	}
 
 	void Update () {
 		transform.renderer.enabled = JouerSimple.anglais;
