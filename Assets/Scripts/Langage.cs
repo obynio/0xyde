@@ -2,10 +2,7 @@
 using System.Collections;
 
 public class Langage : MonoBehaviour {
-	void Start()
-	{
-		JouerSimple.anglais = true;
-	}
+
 	void Update()
 	{
 		transform.renderer.enabled = !JouerSimple.anglais;
@@ -23,5 +20,7 @@ public class Langage : MonoBehaviour {
 	void OnMouseUp()
 	{
 		JouerSimple.anglais = !JouerSimple.anglais;
+		PlayerPrefs.SetInt ("anglais", (PlayerPrefs.GetInt ("anglais") + 1) % 2);
+		PlayerPrefs.Save ();
 	}
 }

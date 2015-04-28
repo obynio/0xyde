@@ -5,7 +5,6 @@ public class FullScreen : MonoBehaviour {
 	
 	void Start()
 	{
-		JouerSimple.anglais = true;
 		Screen.showCursor = false;
 	}
 

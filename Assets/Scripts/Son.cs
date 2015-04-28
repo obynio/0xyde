@@ -2,15 +2,8 @@
 using System.Collections;
 
 public class Son : MonoBehaviour {
+	
 
-	bool mute;
-	
-	void Start()
-	{
-		JouerSimple.anglais = true;
-		mute = false;
-	}
-	
 	void Update()
 	{
 		transform.collider.enabled = !JouerSimple.anglais;
@@ -29,11 +22,8 @@ public class Son : MonoBehaviour {
 	
 	void OnMouseUp()
 	{	
-		if (mute == false)
-			AudioListener.volume = 0;
-		if (mute == true)
-			AudioListener.volume = 1;
-		
-		mute = !mute;
+		PlayerPrefs.SetInt ("Volume", (PlayerPrefs.GetInt ("Volume") + 1) % 2);
+		AudioListener.volume = PlayerPrefs.GetInt ("Volume");
+		PlayerPrefs.Save ();
 	}
 }

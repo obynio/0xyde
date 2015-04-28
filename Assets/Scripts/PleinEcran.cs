@@ -3,11 +3,7 @@ using System.Collections;
 
 public class PleinEcran : MonoBehaviour {
 
-	void Start()
-	{
-		JouerSimple.anglais = true;
-	}
-	
+
 	void Update()
 	{
 		transform.renderer.enabled = !JouerSimple.anglais;

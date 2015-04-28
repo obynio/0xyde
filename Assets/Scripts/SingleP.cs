@@ -10,7 +10,6 @@ public class SingleP : MonoBehaviour {
 
 	void Start()
 	{
-		JouerSimple.anglais = true;
 		Screen.showCursor = false;
 		QualitySettings.antiAliasing = 8;
 	}

@@ -11,7 +11,7 @@ public class JouerSimple : MonoBehaviour {
 	
 	void Start()
 	{
-		anglais = true;
+		anglais = (PlayerPrefs.GetInt ("anglais",0) == 0); //0 is the default value of anglais' int
 		Screen.showCursor = false;
 		QualitySettings.antiAliasing = 8;
 	}
