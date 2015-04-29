@@ -8,6 +8,9 @@ public class PlayerStats : MonoBehaviour {
 	//var Banyan : GameObject;
 	public Texture hurtEffect;	
 	bool displayHurtEffect = false;
+	public Transform SpawnPoint;
+	public Transform Player1;
+	public Transform Player2;
 	bool displayHurtEffect1 = false;
 	//var playerhit : AudioClip;
 	
@@ -26,13 +29,7 @@ public class PlayerStats : MonoBehaviour {
 			//Dead();
 		}
 	}
-	/*
-function Dead()
-{
-	RespawnMenuV2.playerIsDead = true;
-	Debug.Log("Player Died"); 
-}
-	*/
+
 	
 	void RespawnStats ()
 	{
@@ -77,7 +74,9 @@ function Dead()
 		}
 		if(Health <= 0)
 		{
-			//Dead();
+			Player1.transform.position = SpawnPoint.transform.position;
+			Player2.transform.position = SpawnPoint.transform.position;
+			Health = 100;
 		}
 		if(displayHurtEffect == true || displayHurtEffect1 == true)
 		{
