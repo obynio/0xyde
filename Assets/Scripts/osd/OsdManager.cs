@@ -21,6 +21,8 @@ public class OsdManager : MonoBehaviour {
 	private int nextSubtitle = 0;
 	private string displaySubtitle;
 
+    public GUISkin Skin;
+
 	//GUI
 	private GUIStyle subtitleStyle = new GUIStyle();
 
@@ -42,6 +44,7 @@ public class OsdManager : MonoBehaviour {
 	public void BeginDialogue (AudioClip passedClip, string langage) {
 		
 		dialogueAudio = passedClip;
+
 
         Debug.Log(dialogueAudio.name);
 
@@ -88,6 +91,7 @@ public class OsdManager : MonoBehaviour {
 		//Set and play the audio clip
 		audio.clip = dialogueAudio;
 		audio.Play();
+
 	}
 
 	//Remove all characters that are not part of the timing float
@@ -104,8 +108,22 @@ public class OsdManager : MonoBehaviour {
         //Debug.Log(audio.clip.name);
 
 		//Make sure we are using a proper dialogueAudio file
-        if (dialogueAudio != null && audio.clip.name == dialogueAudio.name)
+        if (audio.isPlaying && audio.clip.name == dialogueAudio.name)
 		{
+            if (Skin != null)
+            {
+                GUI.skin = Skin;
+            }
+
+            Rect infoRect = new Rect(10, 10, 180, 50);
+
+            GUILayout.BeginArea(infoRect, GUI.skin.box);
+            {
+                GUILayout.Label("Transmitting" + GetConnectingDots(), GUI.skin.customStyles[0]);
+                GUILayout.Label("DECRYPT_KEY_" + RandomString(10));
+               // GUILayout.Label();
+            }
+            GUILayout.EndArea();
             
 			//Check for <break/> or negative nextSubtitle
 			if((nextSubtitle > 0) && (!subtitleText[nextSubtitle - 1].Contains("<break/>")))
@@ -137,5 +155,36 @@ public class OsdManager : MonoBehaviour {
 			}
 		}
 	}
+
+    // Let's make cool loading dots ! (copy/paste from NetworkManager.cs)
+    string GetConnectingDots()
+    {
+        string str = "";
+        int numberOfDots = Mathf.FloorToInt(Time.timeSinceLevelLoad * 3f % 4);
+
+        for (int i = 0; i < numberOfDots; ++i)
+        {
+            str += " .";
+        }
+
+        return str;
+    }
+
+    
+
+    private string RandomString(int size)
+    {
+        Random rng = new Random();
+        string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_:";
+
+        char[] buffer = new char[size];
+
+        for (int i = 0; i < size; i++)
+        {
+            buffer[i] = chars[Random.Range(0, chars.Length)];
+        }
+        return new string(buffer);
+    }
+
 }
 
