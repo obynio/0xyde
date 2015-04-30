@@ -115,11 +115,12 @@ public class OsdManager : MonoBehaviour {
                 GUI.skin = Skin;
             }
 
-            Rect infoRect = new Rect(10, 10, 160, 34);
+            Rect infoRect = new Rect(10, 10, 180, 50);
 
             GUILayout.BeginArea(infoRect, GUI.skin.box);
             {
                 GUILayout.Label("Transmitting" + GetConnectingDots(), GUI.skin.customStyles[0]);
+                GUILayout.Label("DECRYPT_KEY_" + RandomString(10));
                // GUILayout.Label();
             }
             GUILayout.EndArea();
@@ -167,6 +168,22 @@ public class OsdManager : MonoBehaviour {
         }
 
         return str;
+    }
+
+    
+
+    private string RandomString(int size)
+    {
+        Random rng = new Random();
+        string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_:";
+
+        char[] buffer = new char[size];
+
+        for (int i = 0; i < size; i++)
+        {
+            buffer[i] = chars[Random.Range(0, chars.Length)];
+        }
+        return new string(buffer);
     }
 
 }
