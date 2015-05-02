@@ -221,8 +221,8 @@ public class mAI : MonoBehaviour {
 			GetComponent<NavMeshAgent> ().ResetPath();
 			anim.SetBool ("walk", false);
 
-			//music otherr = (music)go.GetComponent (typeof(music));
-			//otherr.down_music();
+			music otherr = (music)go.GetComponent (typeof(music));
+			otherr.down_music();
 		}
 	}
 
