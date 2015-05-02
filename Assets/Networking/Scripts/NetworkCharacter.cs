@@ -8,7 +8,11 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 	
 	void Update () 
 	{
-		if (!photonView.isMine) 
+		if (photonView.isMine)
+        {
+
+        }
+        else
 		{
 			// Smooth movement like water !
 			transform.position = Vector3.Lerp(transform.position, realPosition, 0.1f);

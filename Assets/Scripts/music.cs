@@ -6,6 +6,9 @@ public class music : MonoBehaviour
 {
 	public int getmusic;
 	public int nbzombi;
+	public int ambiance_count;
+	public GameObject go;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -16,12 +19,20 @@ public class music : MonoBehaviour
 	{
 		if (getmusic == 1 && nbzombi != 0) 
 		{
+
+			ambiance_music other2 = (ambiance_music)go.GetComponent (typeof(ambiance_music));
+			other2.stopmusic ();
+			ambiance_count = 0; 
 			audio.Play();
 			getmusic = getmusic + 1;
 		}
-		if (getmusic == 0 || nbzombi == 0) 
+		if (ambiance_count == 0 && (nbzombi == 0 || getmusic == 0)) 
 		{
 			audio.Stop();
+
+			ambiance_music other3 = (ambiance_music)go.GetComponent (typeof(ambiance_music));
+			other3.playmusic ();
+			ambiance_count = 1;
 		}
 	}
 	
