@@ -166,16 +166,16 @@ public class mAI : MonoBehaviour {
 		eyes.enabled = false;
 
 		//down zombies nb
-		//music other3 = (music)go.GetComponent (typeof(music));
-		//other3.down_zombie();
+		music other3 = (music)go.GetComponent (typeof(music));
+		other3.down_zombie();
 	}
 
 	void OnTriggerEnter (Collider c)
 	{
 		if (c.tag == "Player") 
 		{
-			//music other2 = (music)go.GetComponent (typeof(music));
-			//other2.up_music ();
+			music other2 = (music)go.GetComponent (typeof(music));
+			other2.up_music ();
 		}
 	}
 
