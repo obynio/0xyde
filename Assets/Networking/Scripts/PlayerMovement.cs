@@ -9,16 +9,12 @@ public class PlayerMovement : MonoBehaviour {
 
     // This script is only applied to the local player (the player that currently play on the machine)
 
-
     private CharacterMotor motor;
 
-    float speed = 10f;
     Vector3 directionVector = Vector3.zero;
 
     CharacterController cc;
     Animator anim;
-
-    bool jump = false;
 
 	// Use this for initialization
 	void Start () 
@@ -54,16 +50,11 @@ public class PlayerMovement : MonoBehaviour {
 
 
         if (Input.GetButton("Jump"))
-        {
             motor.inputJump = true;
-        }
 
         if (motor.inputJump && cc.isGrounded)
-        {
             motor.inputJump = false;
-        }
 
-        anim.SetBool("ground", !cc.isGrounded);
         anim.SetBool("jump", motor.inputJump);
 	
 	}
