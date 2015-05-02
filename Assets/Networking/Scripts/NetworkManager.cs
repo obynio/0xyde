@@ -182,7 +182,7 @@ public class NetworkManager : MonoBehaviour {
 
             GUILayout.BeginArea(infoRect, GUI.skin.box);
             {
-                GUILayout.Label("Migi", GUI.skin.customStyles[0]);
+                GUILayout.Label("Migee", GUI.skin.customStyles[0]);
                 GUILayout.Label(sentence);
             }
             GUILayout.EndArea();
@@ -194,7 +194,7 @@ public class NetworkManager : MonoBehaviour {
 
             GUILayout.BeginArea(infoRect, GUI.skin.box);
             {
-                GUILayout.Label("Migi", GUI.skin.customStyles[0]);
+                GUILayout.Label("Migee", GUI.skin.customStyles[0]);
                 GUILayout.Label(sentence);
             }
             GUILayout.EndArea();
