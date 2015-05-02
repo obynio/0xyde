@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour {
     CharacterController cc;
     Animator anim;
 
+    bool jump = false;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -50,7 +52,19 @@ public class PlayerMovement : MonoBehaviour {
 
         anim.SetFloat("speed", directionVector.magnitude);
 
-        motor.inputJump = Input.GetButton("Jump");
+
+        if (Input.GetButton("Jump"))
+        {
+            motor.inputJump = true;
+        }
+
+        if (motor.inputJump && cc.isGrounded)
+        {
+            motor.inputJump = false;
+        }
+
+        anim.SetBool("ground", !cc.isGrounded);
+        anim.SetBool("jump", motor.inputJump);
 	
 	}
 
