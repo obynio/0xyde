@@ -57,4 +57,9 @@ public class music : MonoBehaviour
 	{
 		nbzombi = nbzombi - 1;
 	}
+
+	public void reset()
+	{
+		getmusic = 0;
+	}
 }
