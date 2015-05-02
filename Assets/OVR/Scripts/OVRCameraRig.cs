@@ -245,7 +245,7 @@ public class OVRCameraRig : MonoBehaviour
 		}
 
 		anchor.name = name;
-		anchor.parent = root;
+		//anchor.parent = root;
 		anchor.localScale = Vector3.one;
 		anchor.localPosition = Vector3.zero;
 		anchor.localRotation = Quaternion.identity;

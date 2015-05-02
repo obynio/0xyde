@@ -16,12 +16,24 @@ public class MuzzleFlash : MonoBehaviour {
 	void Update ()
 	{
 		GameObject game = GameObject.Find("Spawn1");
-		ShootingFPC shootingFPC = game.GetComponent<ShootingFPC>();
-
-		if (shootingFPC.shooted)
+		try
 		{
-			StartCoroutine(Muzzle());
+			ShootingFPC shootingFPC = game.GetComponent<ShootingFPC>();
+			if (shootingFPC.shooted)
+			{
+				StartCoroutine(Muzzle());
+			}
 		}
+		catch
+		{
+			ShootingFPCVR shootingFPC = game.GetComponent<ShootingFPCVR>();
+			if (shootingFPC.shooted)
+			{
+				StartCoroutine(Muzzle());
+			}
+		}
+
+
 	}
 
 	IEnumerator Muzzle ()

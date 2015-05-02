@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
-public class PlayerStats : MonoBehaviour {
-
+public class PlayerStatsVR : MonoBehaviour {
+	
 	static int MaxHealth = 100;
 	public static int Health = 50;
 	//var Banyan : GameObject;
@@ -13,12 +14,14 @@ public class PlayerStats : MonoBehaviour {
 	public Transform Player2;
 	bool displayHurtEffect1 = false;
 	
+	public Text txt;
 	//var playerhit : AudioClip;
 	
 	float Alpha;
 	
 	public void ApplyDamage (int TheDammage)
 	{
+		audio.Play();
 		displayHurtEffect = true;
 		//audio.PlayClipAtPoint(playerhit, transform.position);
 		//Banyan.animation.Play("Hit");
@@ -29,7 +32,7 @@ public class PlayerStats : MonoBehaviour {
 			//Dead();
 		}
 	}
-
+	
 	
 	void RespawnStats ()
 	{
@@ -44,18 +47,19 @@ public class PlayerStats : MonoBehaviour {
 			displayHurtEffect1 = true;
 		}
 	}
-
+	
 	IEnumerator StopDisplayingEffect() 
 	{
 		//if (RespawnMenuV2.playerIsDead == false)
 		yield return new WaitForSeconds(0.1f);
-
+		
 		displayHurtEffect = false;
 		displayHurtEffect1 = false;
 	}
 	// Use this for initialization
 	void Start ()
 	{
+		txt.text="Health : " + Health;
 		Health = MaxHealth;
 		//Time.timeScale = 0;
 		displayHurtEffect = false;
@@ -64,6 +68,7 @@ public class PlayerStats : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+		txt.text="Health : " + Health;  
 		
 		if (Health >100)
 		{

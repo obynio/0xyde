@@ -161,6 +161,8 @@ public class OVRPlayerController : MonoBehaviour
 		}
 
 		UpdateMovement();
+		if (Input.GetButtonDown("Jump"))
+			Jump ();
 
 		Vector3 moveDirection = Vector3.zero;
 
@@ -205,10 +207,10 @@ public class OVRPlayerController : MonoBehaviour
 		if (HaltUpdateMovement)
 			return;
 
-		bool moveForward = Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.UpArrow);
-		bool moveLeft = Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow);
-		bool moveRight = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
-		bool moveBack = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
+		bool moveForward = Input.GetAxisRaw("Vertical") > 0 || Input.GetKey(KeyCode.UpArrow);
+		bool moveLeft = Input.GetAxisRaw("Horizontal") < 0 || Input.GetKey(KeyCode.LeftArrow);
+		bool moveRight = Input.GetAxisRaw("Horizontal") > 0 || Input.GetKey(KeyCode.RightArrow);
+		bool moveBack = Input.GetAxisRaw("Vertical") < 0 || Input.GetKey(KeyCode.DownArrow);
 
 		bool dpad_move = false;
 
@@ -231,8 +233,8 @@ public class OVRPlayerController : MonoBehaviour
 			MoveScale = 0.70710678f;
 
 		// No positional movement if we are in the air
-		if (!Controller.isGrounded)
-			MoveScale = 0.0f;
+		//if (!Controller.isGrounded)
+			//MoveScale = 0.0f;
 
 		MoveScale *= SimulationRate * Time.deltaTime;
 
@@ -288,7 +290,7 @@ public class OVRPlayerController : MonoBehaviour
 		moveInfluence = SimulationRate * Time.deltaTime * Acceleration * 0.1f * MoveScale * MoveScaleMultiplier;
 
 #if !UNITY_ANDROID // LeftTrigger not avail on Android game pad
-		moveInfluence *= 1.0f + OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.LeftTrigger);
+		//moveInfluence *= 1.0f + OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.LeftTrigger);
 #endif
 
 		float leftAxisX = OVRGamepadController.GPC_GetAxis(OVRGamepadController.Axis.LeftXAxis);

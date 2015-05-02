@@ -12,6 +12,7 @@ public class mAI : MonoBehaviour {
 	private float attackTime = 1;
 	public Renderer eyes;
 	public bool kick;
+	public bool firstATK;
 	public GameObject go;
 	
 
@@ -28,6 +29,7 @@ public class mAI : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		firstATK = false;
 		kick = false;
 		anim = GetComponent<Animator> ();
 		//col = GetComponent<SphereCollider> ();
@@ -68,15 +70,15 @@ public class mAI : MonoBehaviour {
 		{
 			if (Vector3.Distance (transform.position, leader.position) >= minDistance) 
 			{
+				firstATK = false;
 				if (playerDetected)
 				{
 					walk();
 				}
 			}
 			else
-			{
-				Quaternion targetRotation = Quaternion.LookRotation(leader.transform.position - transform.position);
-				transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 3f * Time.deltaTime);
+			{	
+
 				attack();
 			}
 		}
@@ -102,6 +104,9 @@ public class mAI : MonoBehaviour {
 	/// </summary>
 	private void attack()
 	{
+		Quaternion targetRotation = Quaternion.LookRotation(leader.transform.position - transform.position);
+		targetRotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, targetRotation.eulerAngles.z);
+		transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 3f * Time.deltaTime);
 		if (Time.time > attackTime)
 		{
 			//Stop NavMesh agent
@@ -109,11 +114,22 @@ public class mAI : MonoBehaviour {
 			//Start attack motion
 			GetComponent<NavMeshAgent> ().Stop();
 			anim.SetBool ("attack", true);
-
-			PlayerStats other = (PlayerStats)player.GetComponent (typeof(PlayerStats));
-			other.ApplyDamage(10);
+			if (firstATK)
+			{
+				try
+				{
+					PlayerStats other = (PlayerStats)player.GetComponent (typeof(PlayerStats));
+					other.ApplyDamage(20);
+				}
+				catch
+				{
+					PlayerStatsVR other = (PlayerStatsVR)player.GetComponent (typeof(PlayerStatsVR));
+					other.ApplyDamage(20);
+				}
+			}
 
 			attackTime = Time.time + attackRepeatTime;
+			firstATK = true;
 		}
 	}
 
@@ -188,7 +204,7 @@ public class mAI : MonoBehaviour {
 			Vector3 direction = player2.transform.position - transform.position;
 			float angle = Vector3.Angle(direction, transform.forward);
 
-			if(angle < fieldOfViewAngle * 0.5f)
+			if(angle < fieldOfViewAngle * 0.5f && Vector3.Distance (transform.position, leader.position) >= minDistance)
 			{
 				playerDetected = true;
 			}
@@ -205,8 +221,8 @@ public class mAI : MonoBehaviour {
 			GetComponent<NavMeshAgent> ().ResetPath();
 			anim.SetBool ("walk", false);
 
-			music otherr = (music)go.GetComponent (typeof(music));
-			otherr.down_music();
+			//music otherr = (music)go.GetComponent (typeof(music));
+			//otherr.down_music();
 		}
 	}
 

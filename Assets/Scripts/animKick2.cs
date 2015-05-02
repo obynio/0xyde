@@ -9,7 +9,7 @@ public class animKick2 : MonoBehaviour {
 	void Start ()
 	{
 		animation["Kick"].wrapMode = WrapMode.Once;
-		animation["Kick"].layer = 1;
+		animation["Kick"].layer = 0;
 	}
 	
 	// Update is called once per frame
@@ -17,7 +17,7 @@ public class animKick2 : MonoBehaviour {
 	{
 		if (Input.GetButtonDown ("Kick")&& !animation.IsPlaying("Kick"))
 		{
-			animation.CrossFade("Kick");
+			animation.Play("Kick");
 			RaycastHit hit;
 			Ray ray = new Ray(center.position, center.transform.forward);
 			if(Physics.Raycast(ray, out hit))

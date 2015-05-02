@@ -18,12 +18,25 @@ public class Animator1 : MonoBehaviour
 	
 	void Update ()
 	{
-		ShootingFPC shootingFPC = game.GetComponent<ShootingFPC>();
-
-		if (shootingFPC.shooted && !animation.IsPlaying("Start"))
+		try
 		{
-			animation.CrossFade("Shoot", 0.1f);
+			ShootingFPC shootingFPC = game.GetComponent<ShootingFPC>();
+			if (shootingFPC.shooted && !animation.IsPlaying("Start"))
+			{
+				animation.CrossFade("Shoot", 0.1f);
+			}
 		}
+		catch
+		{
+			ShootingFPCVR shootingFPC = game.GetComponent<ShootingFPCVR>();
+			if (shootingFPC.shooted && !animation.IsPlaying("Start"))
+			{
+				animation.CrossFade("Shoot", 0.1f);
+			}
+			
+		}
+
+
 		if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
 		{
 			animation.CrossFade("Walk", 0.1f);

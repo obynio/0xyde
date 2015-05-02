@@ -14,8 +14,16 @@ public class boxammo : MonoBehaviour
 		if(c.gameObject == player)
 		{
 			audio.Play();
-			ShootingFPC other = (ShootingFPC)go.GetComponent (typeof(ShootingFPC));
-			other.AddAmmo(addAmmo);
+			try
+			{
+				ShootingFPC other = (ShootingFPC)go.GetComponent (typeof(ShootingFPC));
+				other.AddAmmo(addAmmo);
+			}
+			catch
+			{
+				ShootingFPCVR other = (ShootingFPCVR)go.GetComponent (typeof(ShootingFPCVR));
+				other.AddAmmo(addAmmo);
+			}
 			
 			Destroy (gameObject, 0.3f);
 		}

@@ -174,7 +174,7 @@ public class OsdManager : MonoBehaviour {
 
     private string RandomString(int size)
     {
-        Random rng = new Random();
+        //Random rng = new Random();
         string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_:";
 
         char[] buffer = new char[size];

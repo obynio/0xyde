@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
- [RequireComponent (typeof (AudioSource))]
-public class ShootingFPC : MonoBehaviour
+[RequireComponent (typeof (AudioSource))]
+public class ShootingFPCVR : MonoBehaviour
 {
 	public float rpm;
 	public int ammo;
-
+	
 	private float secondsInterval;
 	private float nextShootTime;
 	public bool shooted;
@@ -17,8 +18,11 @@ public class ShootingFPC : MonoBehaviour
 	public int speed;
 	public Transform spawn;
 	public Transform turner;
-	
 
+	public Text txt;
+
+	
+	
 	void Start()
 	{
 		secondsInterval = 60 / rpm;
@@ -32,32 +36,28 @@ public class ShootingFPC : MonoBehaviour
 			Instantiate (smoke, turner.transform.position, spawn.transform.rotation);
 			clone.velocity = transform.TransformDirection(Vector3.forward * speed);
 			nextShootTime = Time.time + secondsInterval;
-
+			
 			ammo = ammo-1;
 			Destroy (clone.gameObject, 2);
 			shooted = true;
-
+			
 		}
 		else
 		{
 			shooted = false;
 		}
-	}
-
-	void OnGUI()
-	{
-		GUI.skin = theSkin;
 		if (ammo == 0)
-			GUI.Box(new Rect(20 * (Screen.width/21) -40, Screen.height - 63, 100, 55),  " " + "00");
-		else	
-			GUI.Box(new Rect(20 * (Screen.width/21) -40, Screen.height - 63, 100, 55),  " " + ammo.ToString());
+				txt.text = "00";
+		else
+				txt.text = ammo.ToString ();
 	}
 
+	
 	public void AddAmmo(int n)
 	{
 		ammo += n;
 	}
-
+	
 	private bool CanShoot()
 	{
 		bool canShoot = true;
