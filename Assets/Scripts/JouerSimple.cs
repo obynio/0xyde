@@ -40,6 +40,6 @@ public class JouerSimple : MonoBehaviour {
 	
 	void OnMouseUp()
 	{	
-		Application.LoadLevel("0xyde");
+		Application.LoadLevel("Farm");
 	}
 }

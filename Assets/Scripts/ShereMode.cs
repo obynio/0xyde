@@ -5,7 +5,7 @@ public class ShereMode : MonoBehaviour {
 	bool done = false;
 
 	public GameObject go;
-	public GameObject fetch;
+	//public GameObject fetch;
 
 
 	// Use this for initialization
@@ -27,9 +27,6 @@ public class ShereMode : MonoBehaviour {
 			ModeSelect other = (ModeSelect)go.GetComponent (typeof(ModeSelect));
 			other.Set_mode();
 			done = true;
-
-			music otherr = (music)fetch.GetComponent (typeof(music));
-			otherr.reset();
 		}
 		//Destroy (gameObject, 0.3f);
 	}
