@@ -5,10 +5,18 @@ public class ShereMode : MonoBehaviour {
 	bool done = false;
 
 	public GameObject go;
-	
+	public GameObject fetch;
+
+
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+	{
+
+	}
+
+	void Update ()
+	{
+
 	}
 
 	void OnTriggerStay (Collider c)
@@ -19,6 +27,9 @@ public class ShereMode : MonoBehaviour {
 			ModeSelect other = (ModeSelect)go.GetComponent (typeof(ModeSelect));
 			other.Set_mode();
 			done = true;
+
+			music otherr = (music)fetch.GetComponent (typeof(music));
+			otherr.reset();
 		}
 		//Destroy (gameObject, 0.3f);
 	}
