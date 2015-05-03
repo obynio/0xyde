@@ -32,7 +32,6 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 			stream.SendNext(transform.position);
 			stream.SendNext(transform.rotation);
             stream.SendNext(anim.GetFloat("speed"));
-            stream.SendNext(anim.GetBool("jump"));
 		}
 		else
 		{
@@ -40,7 +39,6 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 			realPosition = (Vector3)stream.ReceiveNext();
 			realRotation = (Quaternion)stream.ReceiveNext();
             anim.SetFloat("speed", (float)stream.ReceiveNext());
-            anim.SetBool("jump", (bool)stream.ReceiveNext());
 		}
 	}
 }

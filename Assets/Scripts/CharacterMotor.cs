@@ -84,7 +84,7 @@ public class CharacterMotor : MonoBehaviour
 		public bool enabled = true;
 		
 		// How high do we jump when pressing jump and letting go immediately
-		public float baseHeight = 1.0f;
+		public float baseHeight = 0.3f;
 		
 		// We add extraHeight units(meters) on top when holding the button down longer while jumping
 		public float extraHeight = 4.1f;

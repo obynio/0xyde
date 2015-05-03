@@ -48,15 +48,7 @@ public class PlayerMovement : MonoBehaviour {
 
         anim.SetFloat("speed", directionVector.magnitude);
 
-
-        if (Input.GetButton("Jump"))
-            motor.inputJump = true;
-
-        if (motor.inputJump && cc.isGrounded)
-            motor.inputJump = false;
-
-        anim.SetBool("jump", motor.inputJump);
-	
+        motor.inputJump = Input.GetButton("Jump");
 	}
 
     // because Update is crap as it's updated once per frame whereas this one is updated once per physics loop
