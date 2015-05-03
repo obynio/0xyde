@@ -6,9 +6,10 @@ public class TestOsd : MonoBehaviour {
 	public AudioClip dialogueClip;
 	
 	void Update () {
+	
 		if(Input.GetKeyDown(KeyCode.O))
 		{
-			OsdManager.Instance.BeginDialogue(dialogueClip, PlayerPrefs.GetInt ("anglais") == 0 ? "en" : "fr");
+			OsdManager.Instance.BeginDialogue(dialogueClip, "fr");
 		}
 	}
 }

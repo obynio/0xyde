@@ -46,8 +46,8 @@ public class ShootingFPCVR : MonoBehaviour
 		{
 			shooted = false;
 		}
-		if (ammo == 0)
-				txt.text = "00";
+		if (ammo < 10)
+				txt.text = "0" + ammo.ToString();		//WARNING : EXPLICIT CONTENT
 		else
 				txt.text = ammo.ToString ();
 	}

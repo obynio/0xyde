@@ -47,8 +47,8 @@ public class ShootingFPC : MonoBehaviour
 	void OnGUI()
 	{
 		GUI.skin = theSkin;
-		if (ammo == 0)
-			GUI.Box(new Rect(20 * (Screen.width/21) -40, Screen.height - 63, 100, 55),  " " + "00");
+		if (ammo < 10)
+			GUI.Box(new Rect(20 * (Screen.width/21) -40, Screen.height - 63, 100, 55),  " " + "0" + ammo.ToString());
 		else	
 			GUI.Box(new Rect(20 * (Screen.width/21) -40, Screen.height - 63, 100, 55),  " " + ammo.ToString());
 	}
