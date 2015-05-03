@@ -170,9 +170,6 @@
  <Reference Include="UnityEditor.UI">
  <HintPath>D:/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/Editor/UnityEditor.UI.dll</HintPath>
  </Reference>
- <Reference Include="JMOAssets">
- <HintPath>C:/Users/Symon/Documents/0xyde-s1/Assets/JMO Assets/Editor/JMOAssets.dll</HintPath>
- </Reference>
  <Reference Include="LitJson">
  <HintPath>C:/Users/raiskadeyr/Documents/0xyde-s1/Assets/Networking/Scripts/LitJson.dll</HintPath>
  </Reference>
