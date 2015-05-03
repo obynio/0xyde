@@ -13,13 +13,11 @@ public class PlayerMovement : MonoBehaviour {
 
     Vector3 directionVector = Vector3.zero;
 
-    CharacterController cc;
     Animator anim;
 
 	// Use this for initialization
 	void Start () 
     {
-        cc = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
 	}
 
