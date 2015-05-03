@@ -59,7 +59,6 @@
      <Compile Include="Assets\Editor\Image Effects\SunShaftsEditor.js" />
      <Compile Include="Assets\Editor\Image Effects\TonemappingEditor.js" />
      <Compile Include="Assets\Editor\Image Effects\VignettingEditor.js" />
-     <None Include="Assets\CartoonZombies\readme.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Plugins\donotdelete.txt" />

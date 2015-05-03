@@ -46,20 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CartoonZombies\CZ_Detach.js" />
-     <Compile Include="Assets\CartoonZombies\CZ_Hack.js" />
-     <Compile Include="Assets\CartoonZombies\CZ_Raycast.js" />
-     <Compile Include="Assets\CartoonZombies\CZ_ZombieBehavior.js" />
-     <Compile Include="Assets\CartoonZombies\CZ_continuousPrefabGenerator.js" />
-     <Compile Include="Assets\CartoonZombies\CZ_destroyThisTimed.js" />
-     <Compile Include="Assets\CartoonZombies\CZ_getRandomTexture.js" />
      <Compile Include="Assets\FT_CartoonEffect_vol01\Script\AnimationScrollTexture.js" />
      <Compile Include="Assets\FT_CartoonEffect_vol01\Script\AnimationSpriteSheet.js" />
      <Compile Include="Assets\FT_CartoonEffect_vol01\Script\DeadTime.js" />
      <Compile Include="Assets\FT_CartoonEffect_vol01\Script\SampleSceneGUI.js" />
      <Compile Include="Assets\FT_CartoonEffect_vol01\Script\StopCAM.js" />
      <Compile Include="Assets\FT_CartoonEffect_vol01\Script\VisibleBG.js" />
-     <None Include="Assets\CartoonZombies\readme.txt" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Plugins\donotdelete.txt" />
