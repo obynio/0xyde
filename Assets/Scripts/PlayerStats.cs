@@ -19,6 +19,7 @@ public class PlayerStats : MonoBehaviour {
 	
 	public void ApplyDamage (int TheDammage)
 	{
+		audio.Play();
 		displayHurtEffect = true;
 		//audio.PlayClipAtPoint(playerhit, transform.position);
 		//Banyan.animation.Play("Hit");
