@@ -28,11 +28,6 @@ public class DataUpDown : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Return))
-		{
-			StartCoroutine(getJsonLogin(login, password));
-		}
-
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			Application.LoadLevel("0xyde Menu");
@@ -96,7 +91,13 @@ public class DataUpDown : MonoBehaviour {
 	}
 
 	void OnGUI()
-	{		
+	{
+        // allow detect enter even in text area
+        if (Event.current.keyCode == KeyCode.Return)
+        {
+            StartCoroutine(getJsonLogin(login, password));
+        }
+
 		if( Skin != null )
 		{
 			GUI.skin = Skin;
@@ -109,7 +110,7 @@ public class DataUpDown : MonoBehaviour {
 		// Absolute bullshit gui ! Must be checked again
 		GUILayout.BeginArea(centeredRect, GUI.skin.box);
 		{
-			GUI.Label(new Rect (60, 10, 500, 40), "Entrez dans la matrice", GUI.skin.customStyles[0]);
+			GUI.Label(new Rect (60, 10, 500, 40), "0xyde Network", GUI.skin.customStyles[0]);
 
 			GUI.Label(new Rect (60, 70, 300, 24), "Login: ");
 			login = GUI.TextField (new Rect (180, 70, 300, 24), login);
