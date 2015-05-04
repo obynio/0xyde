@@ -174,7 +174,11 @@ public class mAI : MonoBehaviour {
 	private void die()
 	{
 		// Stop NavMesh agent (unless you want self-moving bodies..)
-		GetComponent<NavMeshAgent> ().Stop();
+		try
+		{
+			GetComponent<NavMeshAgent> ().Stop();
+		}
+		catch {}
 
 		// Start dead motion
 		anim.SetBool ("alive", false);
