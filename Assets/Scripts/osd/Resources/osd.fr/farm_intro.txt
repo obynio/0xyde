@@ -5,6 +5,6 @@
 <time/>012.960|<b>MIGEE:</b> Bienvenue dans l'apocalypse !
 <time/>014.350|<b>MIGEE:</b> Pour l'anecdote, l'espèce humaine s'est fait envahir et est sur le point de s'éteindre.
 <time/>020.660|<b>MIGEE:</b> Mais ne vous faites pas de soucis. Le taux de criminalité est passé en dessous des 0% et il n'y a plus de problèmes financiers.
-<time/>028.290|<b>MIGEE:</b> Cependant, vous devez comprendre une petite chose : les zombies sont mauuvais.
+<time/>028.290|<b>MIGEE:</b> Cependant, vous devez comprendre une petite chose : les zombies sont mauvais.
 <time/>033.720|<b>MIGEE:</b> Ok ?
 <time/>036.920|<b>MIGEE:</b> Mhh... Votre silence reflète vos pensées
