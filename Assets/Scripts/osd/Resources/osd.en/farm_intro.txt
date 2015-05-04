@@ -1,0 +1,10 @@
+﻿<time/>000.244|<b>MIGEE:</b> Initialisation...
+<time/>002.100|<b>MIGEE:</b> Booting vocal system...
+<time/>004.122|<b>MIGEE:</b> Hello subject number 12.
+<time/>006.650|<b>MIGEE:</b> I am the artificial intelligence MIGEE version 5. something... But who cares ?
+<time/>012.960|<b>MIGEE:</b> Welcome to apocalypse !
+<time/>015.350|<b>MIGEE:</b> For the record, human kind has been invaded and is on the verge of extinction.
+<time/>020.660|<b>MIGEE:</b> But don't worry, the crime rate level fell below 0% and there is no financial problems left.
+<time/>028.290|<b>MIGEE:</b> Anyway, you need to understand one little thing. Zombies are bad.
+<time/>033.720|<b>MIGEE:</b> Right ?
+<time/>036.920|<b>MIGEE:</b> Well... Your silence echoes your thoughts.
