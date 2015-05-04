@@ -4,7 +4,7 @@ using System.Collections;
 public class mAI : MonoBehaviour {
 
 	public Transform leader;
-	public Transform Rot;
+	private Transform Rot;
 	public float maxDistance = 7;
 	public float minDistance = 3;
 	private Animator anim;
@@ -21,7 +21,7 @@ public class mAI : MonoBehaviour {
 	private bool playerDetected = false;
 	private GameObject player2;
 	
-	public GameObject player;
+	private GameObject Health;
 
 	private int life = 1;
 
@@ -29,11 +29,13 @@ public class mAI : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		Health = GameObject.Find("_Game");
 		firstATK = false;
 		kick = false;
 		anim = GetComponent<Animator> ();
 		//col = GetComponent<SphereCollider> ();
 		attackTime = Time.time;
+		Rot = leader;
 	}
 
 	IEnumerator KickT()
@@ -118,12 +120,12 @@ public class mAI : MonoBehaviour {
 			{
 				try
 				{
-					PlayerStats other = (PlayerStats)player.GetComponent (typeof(PlayerStats));
+					PlayerStats other = (PlayerStats)Health.GetComponent (typeof(PlayerStats));
 					other.ApplyDamage(20);
 				}
 				catch
 				{
-					PlayerStatsVR other = (PlayerStatsVR)player.GetComponent (typeof(PlayerStatsVR));
+					PlayerStatsVR other = (PlayerStatsVR)Health.GetComponent (typeof(PlayerStatsVR));
 					other.ApplyDamage(20);
 				}
 			}
