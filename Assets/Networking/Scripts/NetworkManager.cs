@@ -20,6 +20,8 @@ public class NetworkManager : MonoBehaviour {
 
     public GUISkin Skin;
 
+    bool offlineMode = false;
+
     // Use this for initialization
     void Start()
     {
@@ -39,7 +41,15 @@ public class NetworkManager : MonoBehaviour {
 
     void ConnectToServer()
     {
-        PhotonNetwork.ConnectUsingSettings("0xyde_v01");
+        if (offlineMode)
+        {
+            PhotonNetwork.offlineMode = true;
+            OnJoinedLobby();
+        }
+        else
+        {
+            PhotonNetwork.ConnectUsingSettings("0xyde_v01");
+        }
     }
 
     // Run as client ?
