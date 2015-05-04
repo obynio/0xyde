@@ -38,6 +38,6 @@ public class SingleP : MonoBehaviour {
 
 	void OnMouseUp()
 	{	
-		Application.LoadLevel("0xyde");
+		Application.LoadLevel("Farm");
 	}
 }

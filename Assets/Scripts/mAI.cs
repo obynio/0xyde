@@ -5,7 +5,7 @@ public class mAI : MonoBehaviour {
 
 	public Transform leader;
 	public Transform Rot;
-	public float maxDistance = 8;
+	public float maxDistance = 7;
 	public float minDistance = 3;
 	private Animator anim;
 	private float attackRepeatTime = 1;
@@ -180,7 +180,8 @@ public class mAI : MonoBehaviour {
 		anim.SetBool ("alive", false);
 		(gameObject.GetComponent(typeof(CapsuleCollider)) as CapsuleCollider).isTrigger = true;
 		eyes.enabled = false;
-
+		//GetComponent<NavMeshAgent> ().enabled = false;
+		Destroy(gameObject.GetComponent<NavMeshAgent> ());
 		//down zombies nb
 	}
 
@@ -201,7 +202,7 @@ public class mAI : MonoBehaviour {
 			Vector3 direction = player2.transform.position - transform.position;
 			float angle = Vector3.Angle(direction, transform.forward);
 
-			if(angle < fieldOfViewAngle * 0.5f && Vector3.Distance (transform.position, leader.position) >= minDistance)
+			if(angle < fieldOfViewAngle * 0.5f )
 			{
 				playerDetected = true;
 			}
@@ -215,7 +216,11 @@ public class mAI : MonoBehaviour {
 		{
 			// ... the player is not in sight.
 			playerDetected = false;
-			GetComponent<NavMeshAgent> ().ResetPath();
+			try
+			{
+				GetComponent<NavMeshAgent> ().ResetPath();
+			}
+			catch {}
 			anim.SetBool ("walk", false);
 
 		}
