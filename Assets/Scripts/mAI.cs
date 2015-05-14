@@ -125,8 +125,12 @@ public class mAI : MonoBehaviour {
 				}
 				catch
 				{
-					PlayerStatsVR other = (PlayerStatsVR)Health.GetComponent (typeof(PlayerStatsVR));
-					other.ApplyDamage(20);
+					try
+					{
+						PlayerStatsVR other = (PlayerStatsVR)Health.GetComponent (typeof(PlayerStatsVR));
+						other.ApplyDamage(20);
+					}
+					catch {}
 				}
 			}
 
