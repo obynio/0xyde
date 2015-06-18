@@ -73,7 +73,11 @@ public class mAIMulti : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		leader = FindClosestPlayer ().transform;
+		try
+		{
+			leader = FindClosestPlayer ().transform;
+		}
+		catch{}
 		if (kick)
 		{
 			float translation = Time.deltaTime * -10;
