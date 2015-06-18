@@ -27,10 +27,12 @@ public class ShootingMulti : MonoBehaviour
 	{
 		if (Input.GetButtonDown ("Fire1") && CanShoot())
 		{
+			Debug.Log("test");
 			audio.Play();
-			GetComponent<PhotonView>().RPC ("45_Bullet", PhotonTargets.All);
-			Rigidbody clone = Shoot ();
-			clone.velocity = transform.TransformDirection(Vector3.forward * speed);
+			//GetComponent<PhotonView>().RPC ("45_Bullet", PhotonTargets.All);
+			//GameObject clone = Shoot ();
+			GameObject clone = PhotonNetwork.Instantiate("45_Bullet", spawn.transform.position, turner.transform.rotation, 0);
+			clone.rigidbody. velocity = transform.TransformDirection(Vector3.forward * speed);
 			nextShootTime = Time.time + secondsInterval;
 
 			ammo = ammo-1;
@@ -43,17 +45,7 @@ public class ShootingMulti : MonoBehaviour
 			shooted = false;
 		}
 	}
-
-	[RPC]
-	private Rigidbody Shoot()
-	{
-		Rigidbody clone = Instantiate(theBullet, spawn.transform.position, turner.transform.rotation) as Rigidbody;
-		//PhotonNetwork.Instantiate ("smoke", turner.transform.position, spawn.transform.rotation, 0);
-		return clone;
-
-
-		
-	}
+	
 
 	void OnGUI()
 	{
