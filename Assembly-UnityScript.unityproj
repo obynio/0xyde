@@ -173,10 +173,10 @@
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="LitJson">
- <HintPath>C:/Users/sybiload/Desktop/0xyde-s1/Assets/Networking/Scripts/LitJson.dll</HintPath>
+ <HintPath>D:/dev/unity/0xyde-s1/Assets/Networking/Scripts/LitJson.dll</HintPath>
  </Reference>
  <Reference Include="Photon3Unity3D">
- <HintPath>C:/Users/sybiload/Desktop/0xyde-s1/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+ <HintPath>D:/dev/unity/0xyde-s1/Assets/Plugins/Photon3Unity3D.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
