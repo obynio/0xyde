@@ -4,6 +4,12 @@ using System.Collections;
 public class BulletMulti : MonoBehaviour {
 	public GameObject blood;
 	
+    // Fucking bullet move now by itself !
+    void Start()
+    {
+        this.rigidbody.velocity = transform.TransformDirection(Vector3.left * 25);
+        Destroy(this.gameObject, 2);
+    }
 
 	void OnCollisionEnter(Collision c)
 	{

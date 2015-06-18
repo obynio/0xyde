@@ -29,23 +29,29 @@ public class ShootingMulti : MonoBehaviour
 		{
 			Debug.Log("test");
 			audio.Play();
-			//GetComponent<PhotonView>().RPC ("45_Bullet", PhotonTargets.All);
-			//GameObject clone = Shoot ();
-			GameObject clone = PhotonNetwork.Instantiate("45_Bullet", spawn.transform.position, turner.transform.rotation, 0);
-			clone.rigidbody. velocity = transform.TransformDirection(Vector3.forward * speed);
-			nextShootTime = Time.time + secondsInterval;
 
-			ammo = ammo-1;
-			Destroy (clone.gameObject, 2);
-			shooted = true;
+            // Awesome, no need RPC neither to sync pos as the fucking bullet move itself !
+            GameObject clone = PhotonNetwork.Instantiate("45_Bullet", spawn.transform.position, turner.transform.rotation, 0);
 
+            nextShootTime = Time.time + secondsInterval;
+            ammo = ammo - 1;
+            shooted = true;
+            
 		}
 		else
 		{
 			shooted = false;
 		}
 	}
-	
+
+     /*
+    [RPC]
+    void Shoot()
+    {
+        Rigidbody clone = Instantiate(theBullet, spawn.transform.position, turner.transform.rotation) as Rigidbody;
+        Debug.Log("Shooted");
+    }
+	*/
 
 	void OnGUI()
 	{
