@@ -88,7 +88,7 @@ public class mAI : MonoBehaviour {
 
 	/// <summary>
 	/// Walk behaviour function
-	/// </summary>qqqq
+	/// </summary>
 	private void walk()
 	{
 		// Initiate NavMesh agent
