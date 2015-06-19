@@ -159,6 +159,9 @@ public class NetworkManager : MonoBehaviour {
 
         dpc.transform.FindChild("Main Camera").gameObject.SetActive(true);
 
+        // For Symon
+        dpc.transform.FindChild("LenzoPrefab").gameObject.SetActive(false);
+
         standbyCamera.enabled = false; 
     }
 
