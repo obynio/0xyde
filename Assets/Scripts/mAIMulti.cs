@@ -35,7 +35,11 @@ public class mAIMulti : MonoBehaviour {
 		anim = GetComponent<Animator> ();
 		//col = GetComponent<SphereCollider> ();
 		attackTime = Time.time;
-		leader = FindClosestPlayer ().transform;
+		try
+		{
+			leader = FindClosestPlayer ().transform;
+		}
+		catch{}
 		Rot = leader;
 	}
 
@@ -94,6 +98,8 @@ public class mAIMulti : MonoBehaviour {
 	{
 		if (life > 0) 
 		{
+			try
+			{
 			if (Vector3.Distance (transform.position, leader.position) >= minDistance) 
 			{
 				firstATK = false;
@@ -107,6 +113,8 @@ public class mAIMulti : MonoBehaviour {
 
 				attack();
 			}
+			}
+			catch{}
 		}
 	}
 

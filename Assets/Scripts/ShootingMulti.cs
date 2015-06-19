@@ -31,7 +31,7 @@ public class ShootingMulti : MonoBehaviour
 			audio.Play();
 
             // Awesome, no need RPC neither to sync pos as the fucking bullet move itself !
-            GameObject clone = PhotonNetwork.Instantiate("45_Bullet", spawn.transform.position, turner.transform.rotation, 0);
+            PhotonNetwork.Instantiate("45_Bullet", spawn.transform.position, turner.transform.rotation, 0);
 
             nextShootTime = Time.time + secondsInterval;
             ammo = ammo - 1;

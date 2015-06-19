@@ -26,10 +26,21 @@ public class MuzzleFlash : MonoBehaviour {
 		}
 		catch
 		{
-			ShootingFPCVR shootingFPC = game.GetComponent<ShootingFPCVR>();
-			if (shootingFPC.shooted)
+			try
 			{
-				StartCoroutine(Muzzle());
+				ShootingFPCVR shootingFPC = game.GetComponent<ShootingFPCVR>();
+				if (shootingFPC.shooted)
+				{
+					StartCoroutine(Muzzle());
+				}
+			}
+			catch
+			{
+				ShootingMulti shootingFPC = game.GetComponent<ShootingMulti>();
+				if (shootingFPC.shooted)
+				{
+					StartCoroutine(Muzzle());
+				}
 			}
 		}
 
