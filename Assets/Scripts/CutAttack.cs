@@ -42,8 +42,16 @@ public class CutAttack : MonoBehaviour {
 				if(hit.distance < 2.5f)
 				{
 					GameObject go = hit.collider.gameObject;
-					mAI other = (mAI)go.GetComponent (typeof(mAI));
-					other.hurt();
+					try
+					{
+						mAI other = (mAI)go.GetComponent (typeof(mAI));
+						other.hurt();
+					}
+					catch
+					{
+						mAIMulti other = (mAIMulti)go.GetComponent (typeof(mAIMulti));
+						other.hurt();
+					}
 					Instantiate (blood, blo.transform.position, blo.transform.rotation);
 					
 					
