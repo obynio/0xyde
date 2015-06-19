@@ -23,7 +23,7 @@ public class NetworkManager : MonoBehaviour {
     bool offlineMode = false;
 
     // For Symon
-    public static bool[] playersOnline = new bool[8];
+    public static string[] playersOnline = new string[8];
 
     /// <summary>
     /// Return the number of players currently in game
@@ -80,6 +80,13 @@ public class NetworkManager : MonoBehaviour {
         PhotonNetwork.playerName = data.getUser();
 
         playerList = PhotonNetwork.playerList;
+
+        foreach (PhotonPlayer p in PhotonNetwork.playerList)
+        {
+            Debug.Log(p.ToString());
+        }
+        
+
         SpawnPlayer();
     }
 
@@ -98,9 +105,9 @@ public class NetworkManager : MonoBehaviour {
         // For Symon
         for (int i = 0; i < playersOnline.Length; i++)
         {
-            if (playersOnline[i] == false)
+            if (playersOnline[i] == "void")
             {
-                playersOnline[i] = true;
+                playersOnline[i] = "void";
                 break;
             }
         }
@@ -117,9 +124,9 @@ public class NetworkManager : MonoBehaviour {
         // For Symon
         for (int i = 0; i < playersOnline.Length; i++)
         {
-            if (playersOnline[i] == false)
+            if (playersOnline[i] == "void")
             {
-                playersOnline[i - 1] = false;
+                playersOnline[i - 1] = "void";
                 break;
             }
         }

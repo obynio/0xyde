@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MultiHide : MonoBehaviour {
+public class MultiHide : Photon.MonoBehaviour {
 
 	public Camera cam;
 	// Use this for initialization
 	void Start()
 	{
+        if (photonView.isMine)
+        {
+            // TODO
+            Debug.Log("hksdjflmgihdsqgdomiudzqhsgklusqhfzqilujghgdfqgijzqgofsqeuhbd");
+        }
+
+        /*
 		Show ("Player1");
 		Show ("Player2");
 		Show ("Player3");
@@ -51,6 +58,7 @@ public class MultiHide : MonoBehaviour {
 			Hide ("Player8");
 			break;
 		}
+         * */
 	}
 	
 	// Update is called once per frame
