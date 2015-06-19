@@ -22,6 +22,15 @@ public class NetworkManager : MonoBehaviour {
 
     bool offlineMode = false;
 
+    /// <summary>
+    /// Return the number of players currently in game
+    /// </summary>
+    /// <returns></returns>
+    public static int getPlayerNumber()
+    {
+        return PhotonNetwork.playerList.Length;
+    }
+
     // Use this for initialization
     void Start()
     {
