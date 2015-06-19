@@ -21,9 +21,6 @@ public class NetworkManager : MonoBehaviour {
 
     bool offlineMode = false;
 
-    // For Symon
-    public static string[] playersOnline = new string[8];
-
     /// <summary>
     /// Return the number of players currently in game
     /// </summary>
@@ -101,16 +98,6 @@ public class NetworkManager : MonoBehaviour {
 
     void OnPhotonPlayerConnected()
     {
-        // For Symon
-        for (int i = 0; i < playersOnline.Length; i++)
-        {
-            if (playersOnline[i] == "void")
-            {
-                playersOnline[i] = "void";
-                break;
-            }
-        }
-
         playerDiff = getPlayerDiff(playerList);
         Debug.Log(playerDiff + " has join the game");
 
@@ -120,17 +107,6 @@ public class NetworkManager : MonoBehaviour {
 
     void OnPhotonPlayerDisconnected()
     {
-        // For Symon
-        for (int i = 0; i < playersOnline.Length; i++)
-        {
-            if (playersOnline[i] == "void")
-            {
-                playersOnline[i - 1] = "void";
-                break;
-            }
-        }
-
-
         playerDiff = getPlayerDiff(playerList);
         Debug.Log(playerDiff + " has left the game");
 
@@ -158,8 +134,9 @@ public class NetworkManager : MonoBehaviour {
 
         dpc.transform.FindChild("Main Camera").gameObject.SetActive(true);
 
-        // For Symon
+        // <rage>
         dpc.transform.FindChild("LenzoPrefab").gameObject.SetActive(false);
+        // </rage>
 
         standbyCamera.enabled = false; 
     }

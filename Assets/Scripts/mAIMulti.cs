@@ -116,6 +116,10 @@ public class mAIMulti : MonoBehaviour {
 			}
 			catch{}
 		}
+        else
+        {
+            die();
+        }
 	}
 
 	/// <summary>
@@ -267,5 +271,23 @@ public class mAIMulti : MonoBehaviour {
 
 		}
 	}
+
+    // PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON !
+
+    
+    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            // Sending life
+            stream.SendNext(life);
+        }
+        else
+        {
+            // Receiving life
+            life = (int)stream.ReceiveNext();
+        }
+    }
+    
 
 }
