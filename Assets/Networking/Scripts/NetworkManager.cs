@@ -5,7 +5,6 @@ using System;
 public class NetworkManager : MonoBehaviour {
 
     public Camera standbyCamera;
-    public GameObject land;
     SpawnSpot[] spots;
 
     // For popup notifications
