@@ -22,6 +22,9 @@ public class NetworkManager : MonoBehaviour {
 
     bool offlineMode = false;
 
+    // For Symon
+    public static bool[] playersOnline = new bool[8];
+
     /// <summary>
     /// Return the number of players currently in game
     /// </summary>
@@ -92,6 +95,16 @@ public class NetworkManager : MonoBehaviour {
 
     void OnPhotonPlayerConnected()
     {
+        // For Symon
+        for (int i = 0; i < playersOnline.Length; i++)
+        {
+            if (playersOnline[i] == false)
+            {
+                playersOnline[i] = true;
+                break;
+            }
+        }
+
         playerDiff = getPlayerDiff(playerList);
         Debug.Log(playerDiff + " has join the game");
 
@@ -101,6 +114,17 @@ public class NetworkManager : MonoBehaviour {
 
     void OnPhotonPlayerDisconnected()
     {
+        // For Symon
+        for (int i = 0; i < playersOnline.Length; i++)
+        {
+            if (playersOnline[i] == false)
+            {
+                playersOnline[i - 1] = false;
+                break;
+            }
+        }
+
+
         playerDiff = getPlayerDiff(playerList);
         Debug.Log(playerDiff + " has left the game");
 
@@ -135,6 +159,8 @@ public class NetworkManager : MonoBehaviour {
     {
         PhotonPlayer[] newPlayers = PhotonNetwork.playerList;
         playerList = PhotonNetwork.playerList;
+
+        Debug.Log(playerList);
 
         if (newPlayers.Length < oldPlayers.Length)
         {
