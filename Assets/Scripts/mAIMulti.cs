@@ -118,7 +118,7 @@ public class mAIMulti : MonoBehaviour {
 		}
         else
         {
-            die();
+            GetComponent<PhotonView>().RPC("die", PhotonTargets.All);
         }
 	}
 
@@ -184,7 +184,8 @@ public class mAIMulti : MonoBehaviour {
 
 		if (life <= 0) 
 		{
-			die ();
+			//die ();
+            GetComponent<PhotonView>().RPC("die", PhotonTargets.All);
 		}
 		else
 		{
@@ -202,7 +203,8 @@ public class mAIMulti : MonoBehaviour {
 
 		if (life <= 0) 
 		{
-			die ();
+			//die ();
+            GetComponent<PhotonView>().RPC("die", PhotonTargets.All);
 		}
 		else
 		{
@@ -210,12 +212,16 @@ public class mAIMulti : MonoBehaviour {
 		}
 	}
 
+
 	/// <summary>
 	/// Kill the zombie
 	/// </summary>
+    [RPC]
 	private void die()
 	{
 		// Stop NavMesh agent (unless you want self-moving bodies..)
+        Debug.Log("I died");
+
 		try
 		{
 			GetComponent<NavMeshAgent> ().Stop();
@@ -229,6 +235,9 @@ public class mAIMulti : MonoBehaviour {
 		//GetComponent<NavMeshAgent> ().enabled = false;
 		Destroy(gameObject.GetComponent<NavMeshAgent> ());
 		//down zombies nb
+
+        // stop script
+        this.enabled = false;
 	}
 
 	void OnTriggerEnter (Collider c)
