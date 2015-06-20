@@ -18,14 +18,6 @@ public class PlayerStatsMulti : MonoBehaviour {
 	
 	public void ApplyDamage (int TheDammage)
 	{
-		Debug.Log ("Dammage!");
-		
-		GetComponent<PhotonView>().RPC("Dammage", PhotonTargets.All);
-	}
-	
-	[RPC]
-	private void Dammage()
-	{
 		audio.Play();
 		displayHurtEffect = true;
 		//audio.PlayClipAtPoint(playerhit, transform.position);
