@@ -180,17 +180,7 @@ public class mAIMulti : MonoBehaviour {
 	/// </summary>
 	public void hurt()
 	{
-		life--;
-
-		if (life <= 0) 
-		{
-			//die ();
-            GetComponent<PhotonView>().RPC("die", PhotonTargets.All);
-		}
-		else
-		{
-			Debug.Log("Hurt");
-		}
+        GetComponent<PhotonView>().RPC("photonHurt", PhotonTargets.All);
 	}
 
 	/// <summary>
@@ -199,18 +189,47 @@ public class mAIMulti : MonoBehaviour {
 	/// <param name="hurtPoint">Hurt point.</param>
 	public void hurt(int hurtPoint)
 	{
-		life -= hurtPoint;
-
-		if (life <= 0) 
-		{
-			//die ();
-            GetComponent<PhotonView>().RPC("die", PhotonTargets.All);
-		}
-		else
-		{
-			Debug.Log("Hurt");
-		}
+        GetComponent<PhotonView>().RPC("photonHurt", PhotonTargets.All, hurtPoint);
 	}
+
+    /// <summary>
+    /// Hurt the zombie on all clients. Must not be called outside the class.
+    /// </summary>
+    [RPC]
+    private void photonHurt()
+    {
+        life--;
+
+        if (life <= 0)
+        {
+            //die ();
+            GetComponent<PhotonView>().RPC("die", PhotonTargets.All);
+        }
+        else
+        {
+            Debug.Log("Hurt");
+        }
+    }
+
+    /// <summary>
+    /// Hurt the zombie with a certain amount of pain on all clients. Must not be called outside the class. 
+    /// </summary>
+    /// <param name="hurtPoint"></param>
+    [RPC]
+    private void photonHurt(int hurtPoint)
+    {
+        life -= hurtPoint;
+
+        if (life <= 0)
+        {
+            //die ();
+            GetComponent<PhotonView>().RPC("die", PhotonTargets.All);
+        }
+        else
+        {
+            Debug.Log("Hurt");
+        }
+    }
 
 
 	/// <summary>
