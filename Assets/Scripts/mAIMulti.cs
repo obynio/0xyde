@@ -20,8 +20,6 @@ public class mAIMulti : MonoBehaviour {
 	public float fieldOfViewAngle = 110f;
 	private bool playerDetected = false;
 	private GameObject player2;
-	
-	private GameObject Health;
 
 	private int life = 1;
 
@@ -29,7 +27,6 @@ public class mAIMulti : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		Health = GameObject.Find("_Game");
 		firstATK = false;
 		kick = false;
 		anim = GetComponent<Animator> ();
@@ -154,19 +151,26 @@ public class mAIMulti : MonoBehaviour {
 			anim.SetBool ("attack", true);
 			if (firstATK)
 			{
+				player2 = FindClosestPlayer ();
+				
 				try
 				{
-					PlayerStats other = (PlayerStats)Health.GetComponent (typeof(PlayerStats));
+					PlayerStats other = (PlayerStats)player2.GetComponent (typeof(PlayerStats));
 					other.ApplyDamage(20);
 				}
 				catch
 				{
 					try
 					{
-						PlayerStatsVR other = (PlayerStatsVR)Health.GetComponent (typeof(PlayerStatsVR));
+						PlayerStatsVR other = (PlayerStatsVR)player2.GetComponent (typeof(PlayerStatsVR));
 						other.ApplyDamage(20);
 					}
-					catch {}
+					catch
+					{
+						Debug.Log("Hit!");
+						PlayerStatsMulti other = (PlayerStatsMulti)player2.GetComponent (typeof(PlayerStatsMulti));
+						other.ApplyDamage(20);
+					}
 				}
 			}
 
