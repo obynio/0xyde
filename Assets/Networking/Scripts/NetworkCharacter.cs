@@ -6,11 +6,14 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 	Vector3 realPosition = Vector3.zero;
 	Quaternion realRotation = Quaternion.identity;
 
+    public string playerName = null;
+
     Animator anim;
 
     void Start()
     {
         anim = GetComponent<Animator>();
+        playerName = DataUpDown.getUser();
     }
 	
 	void Update () 

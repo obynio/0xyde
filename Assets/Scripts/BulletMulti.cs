@@ -3,6 +3,7 @@ using System.Collections;
 
 public class BulletMulti : MonoBehaviour {
 	public GameObject blood;
+    private static string shooter;
 	
     // Fucking bullet move now by itself !
     void Start()
@@ -21,9 +22,26 @@ public class BulletMulti : MonoBehaviour {
 		{
 			GameObject go = c.collider.gameObject;
 			mAIMulti other = (mAIMulti)go.GetComponent (typeof(mAIMulti));
-			other.hurt();
+			bool isDead = other.hurt();
 			Instantiate (blood, transform.position, transform.rotation);
+
+            Scores.incrementZombieKilled(shooter);
+
+            if (isDead)
+            {
+                // TODO
+            }
 		}
 		Destroy (gameObject, 0.3f);
 	}
+
+    public void setShooter(string user)
+    {
+        shooter = user;
+    }
+
+    public string getShooter()
+    {
+        return shooter;
+    }
 }
