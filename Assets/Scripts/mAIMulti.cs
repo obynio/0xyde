@@ -164,18 +164,20 @@ public class mAIMulti : MonoBehaviour {
 	/// <summary>
 	/// Remove 1 point of life to the zombie
 	/// </summary>
-	public void hurt()
+	public bool hurt()
 	{
         GetComponent<PhotonView>().RPC("photonHurt", PhotonTargets.All);
+        return life <= 0;
 	}
 
 	/// <summary>
 	/// Remove the given point of live in parameter
 	/// </summary>
 	/// <param name="hurtPoint">Hurt point.</param>
-	public void hurt(int hurtPoint)
+	public bool hurt(int hurtPoint)
 	{
         GetComponent<PhotonView>().RPC("photonHurt", PhotonTargets.All, hurtPoint);
+        return life <= 0;
 	}
 
     /// <summary>

@@ -12,14 +12,14 @@ public class DataUpDown : MonoBehaviour {
 	private bool showErr = false;
 	private string msgErr = "";
 
-	private bool log = false;
-	static private string user = "null";
-	static private string access = "null";
+	private static bool log = false;
+	private static string user = "null";
+	private static string access = "null";
 
 	// Getters
 	public bool getLog() { return log; }
-	public string getUser() { return user; }
-	public string getAccess() { return access; }
+	public static string getUser() { return user; }
+	public static string getAccess() { return access; }
 
 	void Start()
 	{

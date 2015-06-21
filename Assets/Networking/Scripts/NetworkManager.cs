@@ -73,7 +73,7 @@ public class NetworkManager : MonoBehaviour {
         Debug.Log("Connected to room");
 
         // Let's spawn you !
-        PhotonNetwork.playerName = data.getUser();
+        PhotonNetwork.playerName = DataUpDown.getUser();
 
         playerList = PhotonNetwork.playerList;
 
@@ -98,6 +98,11 @@ public class NetworkManager : MonoBehaviour {
 
     void OnPhotonPlayerConnected()
     {
+        Debug.Log("HHEEEEEEEEEEEEEEEEEEEEEEELLOOOOOOOOOOOOOOOOOOOOO");
+
+        // adding player to scoreboard
+        Scores.playerConnected(DataUpDown.getUser());
+
         playerDiff = getPlayerDiff(playerList);
         Debug.Log(playerDiff + " has join the game");
 
