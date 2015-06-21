@@ -151,27 +151,9 @@ public class mAIMulti : MonoBehaviour {
 			anim.SetBool ("attack", true);
 			if (firstATK)
 			{
-				player2 = FindClosestPlayer ();
-				
-				try
-				{
-					PlayerStats other = (PlayerStats)player2.GetComponent (typeof(PlayerStats));
-					other.ApplyDamage(20);
-				}
-				catch
-				{
-					try
-					{
-						PlayerStatsVR other = (PlayerStatsVR)player2.GetComponent (typeof(PlayerStatsVR));
-						other.ApplyDamage(20);
-					}
-					catch
-					{
-						Debug.Log("Hit!");
-						PlayerStatsMulti other = (PlayerStatsMulti)player2.GetComponent (typeof(PlayerStatsMulti));
-						other.ApplyDamage(20);
-					}
-				}
+				Debug.Log("Hit!");
+				PlayerStatsMulti other = (PlayerStatsMulti)leader.GetComponent (typeof(PlayerStatsMulti));
+				other.ApplyDamage();
 			}
 
 			attackTime = Time.time + attackRepeatTime;
