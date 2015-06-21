@@ -20,8 +20,6 @@ public class mAIMulti : MonoBehaviour {
 	public float fieldOfViewAngle = 110f;
 	private bool playerDetected = false;
 	private GameObject player2;
-	
-	private GameObject Health;
 
 	private int life = 1;
 
@@ -29,7 +27,6 @@ public class mAIMulti : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		Health = GameObject.Find("_Game");
 		firstATK = false;
 		kick = false;
 		anim = GetComponent<Animator> ();
@@ -116,6 +113,10 @@ public class mAIMulti : MonoBehaviour {
 			}
 			catch{}
 		}
+        else
+        {
+            GetComponent<PhotonView>().RPC("die", PhotonTargets.All);
+        }
 	}
 
 	/// <summary>
@@ -150,20 +151,9 @@ public class mAIMulti : MonoBehaviour {
 			anim.SetBool ("attack", true);
 			if (firstATK)
 			{
-				try
-				{
-					PlayerStats other = (PlayerStats)Health.GetComponent (typeof(PlayerStats));
-					other.ApplyDamage(20);
-				}
-				catch
-				{
-					try
-					{
-						PlayerStatsVR other = (PlayerStatsVR)Health.GetComponent (typeof(PlayerStatsVR));
-						other.ApplyDamage(20);
-					}
-					catch {}
-				}
+				Debug.Log("Hit!");
+				PlayerStatsMulti other = (PlayerStatsMulti)leader.GetComponent (typeof(PlayerStatsMulti));
+				other.ApplyDamage();
 			}
 
 			attackTime = Time.time + attackRepeatTime;
@@ -176,16 +166,7 @@ public class mAIMulti : MonoBehaviour {
 	/// </summary>
 	public void hurt()
 	{
-		life--;
-
-		if (life <= 0) 
-		{
-			die ();
-		}
-		else
-		{
-			Debug.Log("Hurt");
-		}
+        GetComponent<PhotonView>().RPC("photonHurt", PhotonTargets.All);
 	}
 
 	/// <summary>
@@ -194,24 +175,58 @@ public class mAIMulti : MonoBehaviour {
 	/// <param name="hurtPoint">Hurt point.</param>
 	public void hurt(int hurtPoint)
 	{
-		life -= hurtPoint;
-
-		if (life <= 0) 
-		{
-			die ();
-		}
-		else
-		{
-			Debug.Log("Hurt");
-		}
+        GetComponent<PhotonView>().RPC("photonHurt", PhotonTargets.All, hurtPoint);
 	}
+
+    /// <summary>
+    /// Hurt the zombie on all clients. Must not be called outside the class.
+    /// </summary>
+    [RPC]
+    private void photonHurt()
+    {
+        life--;
+
+        if (life <= 0)
+        {
+            //die ();
+            GetComponent<PhotonView>().RPC("die", PhotonTargets.All);
+        }
+        else
+        {
+            Debug.Log("Hurt");
+        }
+    }
+
+    /// <summary>
+    /// Hurt the zombie with a certain amount of pain on all clients. Must not be called outside the class. 
+    /// </summary>
+    /// <param name="hurtPoint"></param>
+    [RPC]
+    private void photonHurt(int hurtPoint)
+    {
+        life -= hurtPoint;
+
+        if (life <= 0)
+        {
+            //die ();
+            GetComponent<PhotonView>().RPC("die", PhotonTargets.All);
+        }
+        else
+        {
+            Debug.Log("Hurt");
+        }
+    }
+
 
 	/// <summary>
 	/// Kill the zombie
 	/// </summary>
+    [RPC]
 	private void die()
 	{
 		// Stop NavMesh agent (unless you want self-moving bodies..)
+        Debug.Log("I died");
+
 		try
 		{
 			GetComponent<NavMeshAgent> ().Stop();
@@ -225,6 +240,9 @@ public class mAIMulti : MonoBehaviour {
 		//GetComponent<NavMeshAgent> ().enabled = false;
 		Destroy(gameObject.GetComponent<NavMeshAgent> ());
 		//down zombies nb
+
+        // stop script
+        this.enabled = false;
 	}
 
 	void OnTriggerEnter (Collider c)
@@ -267,5 +285,23 @@ public class mAIMulti : MonoBehaviour {
 
 		}
 	}
+
+    // PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON ! PHOTON !
+
+    
+    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.isWriting)
+        {
+            // Sending life
+            stream.SendNext(life);
+        }
+        else
+        {
+            // Receiving life
+            life = (int)stream.ReceiveNext();
+        }
+    }
+    
 
 }

@@ -5,7 +5,6 @@ using System;
 public class NetworkManager : MonoBehaviour {
 
     public Camera standbyCamera;
-    public GameObject land;
     SpawnSpot[] spots;
 
     // For popup notifications
@@ -21,6 +20,15 @@ public class NetworkManager : MonoBehaviour {
     public GUISkin Skin;
 
     bool offlineMode = false;
+
+    /// <summary>
+    /// Return the number of players currently in game
+    /// </summary>
+    /// <returns></returns>
+    public static int getPlayerNumber()
+    {
+        return PhotonNetwork.playerList.Length;
+    }
 
     // Use this for initialization
     void Start()
@@ -68,6 +76,13 @@ public class NetworkManager : MonoBehaviour {
         PhotonNetwork.playerName = data.getUser();
 
         playerList = PhotonNetwork.playerList;
+
+        foreach (PhotonPlayer p in PhotonNetwork.playerList)
+        {
+            Debug.Log(p.ToString());
+        }
+        
+
         SpawnPlayer();
     }
 
@@ -119,6 +134,10 @@ public class NetworkManager : MonoBehaviour {
 
         dpc.transform.FindChild("Main Camera").gameObject.SetActive(true);
 
+        // <rage>
+        dpc.transform.FindChild("LenzoPrefab").gameObject.SetActive(false);
+        // </rage>
+
         standbyCamera.enabled = false; 
     }
 
@@ -126,6 +145,8 @@ public class NetworkManager : MonoBehaviour {
     {
         PhotonPlayer[] newPlayers = PhotonNetwork.playerList;
         playerList = PhotonNetwork.playerList;
+
+        Debug.Log(playerList);
 
         if (newPlayers.Length < oldPlayers.Length)
         {
