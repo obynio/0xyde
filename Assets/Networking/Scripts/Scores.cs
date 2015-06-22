@@ -50,7 +50,7 @@ public class Scores : MonoBehaviour
         Debug.Log(playerStats.Count);
 
         // increment stats
-        currentPlayerStats.incrementZombieKilled();
+        //currentPlayerStats.incrementZombieKilled();
 
         
     }
