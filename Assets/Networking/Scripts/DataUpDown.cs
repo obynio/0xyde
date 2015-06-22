@@ -8,7 +8,7 @@ public class DataUpDown : MonoBehaviour {
 	public GUISkin Skin;
 
 	private string login = "";
-	private string password = "";
+    private string password = "";
 	private bool showErr = false;
 	private string msgErr = "";
 

@@ -98,11 +98,6 @@ public class NetworkManager : MonoBehaviour {
 
     void OnPhotonPlayerConnected()
     {
-        Debug.Log("HHEEEEEEEEEEEEEEEEEEEEEEELLOOOOOOOOOOOOOOOOOOOOO");
-
-        // adding player to scoreboard
-        Scores.playerConnected(DataUpDown.getUser());
-
         playerDiff = getPlayerDiff(playerList);
         Debug.Log(playerDiff + " has join the game");
 

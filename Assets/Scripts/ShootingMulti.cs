@@ -39,22 +39,15 @@ public class ShootingMulti : MonoBehaviour
             nextShootTime = Time.time + secondsInterval;
             ammo = ammo - 1;
             shooted = true;
-            
+
+            // score system
+            Scores.incScoreShoot();
 		}
 		else
 		{
 			shooted = false;
 		}
 	}
-
-     /*
-    [RPC]
-    void Shoot()
-    {
-        Rigidbody clone = Instantiate(theBullet, spawn.transform.position, turner.transform.rotation) as Rigidbody;
-        Debug.Log("Shooted");
-    }
-	*/
 
 	void OnGUI()
 	{

@@ -25,11 +25,10 @@ public class BulletMulti : MonoBehaviour {
 			bool isDead = other.hurt();
 			Instantiate (blood, transform.position, transform.rotation);
 
-            Scores.incrementZombieKilled(shooter);
-
-            if (isDead)
+            if (isDead && shooter.Equals(DataUpDown.getUser()))
             {
-                // TODO
+                // increment kill
+                Scores.incScoreKill();
             }
 		}
 		Destroy (gameObject, 0.3f);

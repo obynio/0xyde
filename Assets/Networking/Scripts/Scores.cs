@@ -1,74 +1,95 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Net;
+using LitJson;
 
 public class Scores : MonoBehaviour 
 {
-    static ArrayList playerStats;
+    private static int kill;
+    private static int die;
+    private static int shoot;
+    private static int bite;
+
+    enum scr { kill, die, shoot, bite };
+
+    // gamePlayed
 
 	// Use this for initialization
 	void Start () 
     {
-	     playerStats = new ArrayList();
+        kill = 0;
+        die = 0;
+        shoot = 0;
+        bite = 0;
 	}
 
-    public static void playerConnected(string playerName)
+    public static void incScoreKill()
     {
-        Stats currentPlayerStats = null;
-
-        // search player in list
-        foreach (Stats stat in playerStats)
-        {
-            if (stat.getPlayerName().Equals(playerName))
-            {
-                currentPlayerStats = stat;
-                break;
-            }
-        }
-
-        // in case the player is not in the list
-        if (currentPlayerStats == null)
-        {
-            currentPlayerStats = new Stats(playerName);
-            playerStats.Add(currentPlayerStats);
-        }
+        kill++;
+        //GameObject.Find("Scores").GetComponent<Scores>().StartCoroutine(sendInfo(scr.kill));
+        Debug.Log("kill");
+    }
+    public static void incScoreDie()
+    {
+        die++;
+        //GameObject.Find("Scores").GetComponent<Scores>().StartCoroutine(sendInfo(scr.die));
+        Debug.Log("die");
     }
 
-    public static void incrementZombieKilled(string playerName)
+    public static void incScoreShoot()
     {
-        Stats currentPlayerStats = null;
-
-        // search player in list
-        foreach (Stats stat in playerStats)
-        {
-            if (stat.getPlayerName().Equals(playerName))
-            {
-                currentPlayerStats = stat;
-                break;
-            }
-        }
-
-        Debug.Log(playerStats.Count);
-
-        // increment stats
-        currentPlayerStats.incrementZombieKilled();
-
-        
+        shoot++;
+        //GameObject.Find("Scores").GetComponent<Scores>().StartCoroutine(sendInfo(scr.shoot));
+        Debug.Log("shoot");
     }
 
-    public static int getZombieKilled(string playerName)
+    public static void incScoreBite()
     {
-        Stats currentPlayerStats = null;
+        bite++;
+        //GameObject.Find("Scores").GetComponent<Scores>().StartCoroutine(sendInfo(scr.bite));
+        Debug.Log("bite");
+    }
 
-        // search player in list
-        foreach (Stats stat in playerStats)
+    private static IEnumerator sendInfo(scr type)
+    {
+        var data = "null";
+
+        try
         {
-            if (stat.getPlayerName().Equals(playerName))
-            {
-                currentPlayerStats = stat;
-                break;
-            }
+            // Get json webpage on 0xyde website
+            WebClient web = new WebClient();
+
+            if (type == scr.kill)
+                data = web.DownloadString("http://0xyde.sybiload.com/json/stats.php?login=" + DataUpDown.getUser() + "&kill");
+            else if (type == scr.die)
+                data = web.DownloadString("http://0xyde.sybiload.com/json/stats.php?login=" + DataUpDown.getUser() + "&die");
+            else if (type == scr.shoot)
+                data = web.DownloadString("http://0xyde.sybiload.com/json/stats.php?login=" + DataUpDown.getUser() + "&shoot");
+            else if (type == scr.bite)
+                data = web.DownloadString("http://0xyde.sybiload.com/json/stats.php?login=" + DataUpDown.getUser() + "&bite");
+
+            // Let's check that result
+            //checkResult(data);
+        }
+        catch
+        {
+            Debug.LogWarning("database exception : unable to connect");
         }
 
-        return currentPlayerStats.getZombieKilled();
+        yield return data;
+    }
+
+    private static void checkResult(string jsonString)
+    {
+        // Serialize the json string into readeable datas
+        JsonData jsonData = JsonMapper.ToObject(jsonString);
+
+        // Check if the login is successful
+        bool log = (bool)jsonData["log"];
+
+        if (!log)
+        {
+            Debug.LogWarning("database exception : no such user");
+        }
     }
 }

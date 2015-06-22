@@ -25,6 +25,8 @@ class PlayerStatsMulti : Photon.MonoBehaviour {
 			audio.Play();
 			displayHurtEffect = true;
 			Health -= 20;
+
+            Scores.incScoreBite();
 		}
 	}
 
@@ -82,6 +84,9 @@ class PlayerStatsMulti : Photon.MonoBehaviour {
 			{
 				Player1.transform.position = new Vector3(0.5f, -0.5f, 0);
 				this.Health = 100;
+
+                // score system
+                Scores.incScoreDie();
 			}
 			if(displayHurtEffect == true || displayHurtEffect1 == true)
 			{
