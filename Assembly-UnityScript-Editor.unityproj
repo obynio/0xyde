@@ -185,13 +185,13 @@
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/Editor/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="LitJson">
- <HintPath>D:/dev/unity/0xyde-s1/Assets/Networking/Scripts/LitJson.dll</HintPath>
+ <HintPath>C:/Users/Antoine/Documents/0xyde-s1/Assets/Networking/Scripts/LitJson.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
- <HintPath>D:/dev/unity/0xyde-s1/Assets/Photon Unity Networking/Editor/PhotonNetwork/Newtonsoft.Json.dll</HintPath>
+ <HintPath>C:/Users/Antoine/Documents/0xyde-s1/Assets/Photon Unity Networking/Editor/PhotonNetwork/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="Photon3Unity3D">
- <HintPath>D:/dev/unity/0xyde-s1/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+ <HintPath>C:/Users/Antoine/Documents/0xyde-s1/Assets/Plugins/Photon3Unity3D.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
