@@ -27,6 +27,6 @@ public class Controls : MonoBehaviour {
 
 	void OnMouseUp()
 	{
-		go.SetActive (!go.GetActive ());
+		go.SetActive (true);
 	}
 }
