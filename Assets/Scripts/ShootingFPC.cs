@@ -25,7 +25,7 @@ public class ShootingFPC : MonoBehaviour
 	}
 	void Update ()
 	{
-		if (Input.GetButtonDown ("Fire1") && CanShoot())
+		if (Input.GetButtonDown ("Fire1") && CanShoot() && !Pause.pause)
 		{
 			audio.Play();
 			Rigidbody clone = Instantiate(theBullet, spawn.transform.position, turner.transform.rotation) as Rigidbody;

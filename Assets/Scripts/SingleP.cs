@@ -10,6 +10,7 @@ public class SingleP : MonoBehaviour {
 
 	void Start()
 	{
+		Time.timeScale = 1;
 		Screen.showCursor = false;
 		QualitySettings.antiAliasing = 8;
 	}

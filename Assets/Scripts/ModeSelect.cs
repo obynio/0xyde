@@ -26,10 +26,6 @@ public class ModeSelect : MonoBehaviour
 
 	void Update ()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			Application.LoadLevel("0xyde Menu");
-		}
 
 		if (Input.GetButtonDown ("Mode"))
 		{
@@ -65,6 +61,9 @@ public class ModeSelect : MonoBehaviour
 
 	void OnGUI()
 	{
+		if (Pause.pause)
+			GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursor);
+
 		if (upMode)
 		{
 			GUI.DrawTexture(new Rect(mouse.x - (w / 2), mouse.y - (h / 2), w, h), cursor);

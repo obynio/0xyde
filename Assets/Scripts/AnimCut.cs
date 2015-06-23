@@ -18,7 +18,7 @@ public class AnimCut : MonoBehaviour {
 	void Update ()
 	{
 		
-		if (Input.GetButtonDown ("Fire1") && !animation.IsPlaying("BayonetStart"))
+		if (Input.GetButtonDown ("Fire1") && !animation.IsPlaying("BayonetStart") && !Pause.pause)
 		{
 			animation.CrossFade("BayonetAttack", 0.1f);
 		}

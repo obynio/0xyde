@@ -25,7 +25,7 @@ public class Gun : MonoBehaviour {
 	
 	public void Shoot()
 	{
-		if(CanShoot())
+		if(CanShoot() && !Pause.pause)
 		{
 			Ray ray = new Ray(spawn.position,spawn.forward);
 			RaycastHit hit;

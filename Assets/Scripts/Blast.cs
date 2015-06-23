@@ -24,7 +24,7 @@ public class Blast : MonoBehaviour {
 	
 	public void Shoot()
 	{
-		if(CanShoot())
+		if(CanShoot() && !Pause.pause)
 		{
 			//Ray ray = new Ray(new Vector3(spawn.position.x + 0.7f, spawn.position.y, spawn.position.z),spawn.forward);
 			

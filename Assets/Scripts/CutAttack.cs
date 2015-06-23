@@ -21,7 +21,7 @@ public class CutAttack : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate()
 	{
-		if (Input.GetButtonDown ("Fire1")&& CanShoot())
+		if (!Pause.pause && Input.GetButtonDown ("Fire1")&& CanShoot())
 		{
 			StartCoroutine("ATK");
 		}
