@@ -5,52 +5,51 @@ using LitJson;
 
 public class Scores : MonoBehaviour 
 {
-    private static int kill;
-    private static int die;
+    private static int enemy;
+    private static int death;
     private static int shoot;
-    private static int bite;
-
-    enum scr { kill, die, shoot, bite };
+    private static int snap;
 
     // gamePlayed
 
 	// Use this for initialization
 	void Start () 
     {
-        kill = 0;
-        die = 0;
+        enemy = 0;
+        death = 0;
         shoot = 0;
-        bite = 0;
+        snap = 0;
 	}
 
-    public static void incScoreKill()
+    public static void incScoreEnemy()
     {
-        kill++;
-        //GameObject.Find("Scores").GetComponent<Scores>().StartCoroutine(sendInfo(scr.kill));
-        Debug.Log("kill");
+        enemy++;
+        Debug.Log("enemy");
     }
-    public static void incScoreDie()
+    public static void incScoreDeath()
     {
-        die++;
-        //GameObject.Find("Scores").GetComponent<Scores>().StartCoroutine(sendInfo(scr.die));
-        Debug.Log("die");
+        death++;
+        Debug.Log("death");
     }
 
     public static void incScoreShoot()
     {
         shoot++;
-        //GameObject.Find("Scores").GetComponent<Scores>().StartCoroutine(sendInfo(scr.shoot));
         Debug.Log("shoot");
     }
 
-    public static void incScoreBite()
+    public static void incScoreSnap()
     {
-        bite++;
-        //GameObject.Find("Scores").GetComponent<Scores>().StartCoroutine(sendInfo(scr.bite));
-        Debug.Log("bite");
+        snap++;
+        Debug.Log("snap");
     }
 
-    private static IEnumerator sendInfo(scr type)
+    void OnApplicationQuit()
+    {
+        GameObject.Find("Scores").GetComponent<Scores>().StartCoroutine(sendInfo());
+    }
+
+    public static IEnumerator sendInfo()
     {
         var data = "null";
 
@@ -58,18 +57,10 @@ public class Scores : MonoBehaviour
         {
             // Get json webpage on 0xyde website
             WebClient web = new WebClient();
-
-            if (type == scr.kill)
-                data = web.DownloadString("http://0xyde.sybiload.com/json/stats.php?login=" + DataUpDown.getUser() + "&kill");
-            else if (type == scr.die)
-                data = web.DownloadString("http://0xyde.sybiload.com/json/stats.php?login=" + DataUpDown.getUser() + "&die");
-            else if (type == scr.shoot)
-                data = web.DownloadString("http://0xyde.sybiload.com/json/stats.php?login=" + DataUpDown.getUser() + "&shoot");
-            else if (type == scr.bite)
-                data = web.DownloadString("http://0xyde.sybiload.com/json/stats.php?login=" + DataUpDown.getUser() + "&bite");
+            data = web.DownloadString("http://0xyde.sybiload.com/json/score.php?login=" + DataUpDown.getUser() + "&enemy=" + enemy + "&death=" + death + "&shoot=" + shoot + "&snap=" + snap);
 
             // Let's check that result
-            //checkResult(data);
+            checkResult(data);
         }
         catch
         {

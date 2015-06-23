@@ -42,6 +42,7 @@ public class NetworkManager : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            GameObject.Find("Scores").GetComponent<Scores>().StartCoroutine(Scores.sendInfo());
             PhotonNetwork.Disconnect();
             Application.LoadLevel("0xyde Menu");
         }

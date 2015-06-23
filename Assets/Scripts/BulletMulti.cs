@@ -28,7 +28,7 @@ public class BulletMulti : MonoBehaviour {
             if (isDead && shooter.Equals(DataUpDown.getUser()))
             {
                 // increment kill
-                Scores.incScoreKill();
+                Scores.incScoreEnemy();
             }
 		}
 		Destroy (gameObject, 0.3f);

@@ -26,7 +26,7 @@ class PlayerStatsMulti : Photon.MonoBehaviour {
 			displayHurtEffect = true;
 			Health -= 20;
 
-            Scores.incScoreBite();
+            Scores.incScoreSnap();
 		}
 	}
 
@@ -86,7 +86,7 @@ class PlayerStatsMulti : Photon.MonoBehaviour {
 				this.Health = 100;
 
                 // score system
-                Scores.incScoreDie();
+                Scores.incScoreDeath();
 			}
 			if(displayHurtEffect == true || displayHurtEffect1 == true)
 			{
