@@ -6,8 +6,7 @@ public class Click_de_la_vie : MonoBehaviour {
 	public GameObject go;
 	// Use this for initialization
 	void Start () {
-		go.SetActive (false);
-	
+		go.SetActive (true);
 	}
 	
 	// Update is called once per frame
