@@ -7,9 +7,10 @@ public class NetworkCharacter : Photon.MonoBehaviour {
 	Quaternion realRotation = Quaternion.identity;
 
     public string playerName = null;
+	public GameObject dpc;
 
     Animator anim;
-
+	
     void Start()
     {
         anim = GetComponent<Animator>();
