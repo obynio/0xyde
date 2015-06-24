@@ -14,7 +14,6 @@ public class mAIMulti : MonoBehaviour {
 	public bool kick;
 	public bool firstATK;
 
-	
 
 	//private SphereCollider col;
 	public float fieldOfViewAngle = 110f;
@@ -264,7 +263,7 @@ public class mAIMulti : MonoBehaviour {
 			Vector3 direction = player2.transform.position - transform.position;
 			float angle = Vector3.Angle(direction, transform.forward);
 
-			if(angle < fieldOfViewAngle * 0.5f )
+			if(true)
 			{
 				playerDetected = true;
 			}
