@@ -51,7 +51,10 @@ public class Pause : MonoBehaviour
 			other.enabled = true;
 			if (!play)
 			{
-				osd.audio.Play();
+				if(osd.audio.time != 0)
+				{
+					osd.audio.Play();
+				}
 				play = true;
 			}
 		}
@@ -63,20 +66,43 @@ public class Pause : MonoBehaviour
 		
 		if(pause)
 		{
-			GUI.Box(new Rect(Screen.width/2 - (Screen.width/4)/2, Screen.height/2 -(Screen.height/2)/2, Screen.width/4, Screen.height/2.18f), "MENU :");
-			
-			if(GUI.Button(new Rect(Screen.width/2 -(Screen.width/5)/2, (Screen.height/2 - (Screen.height/8)/2) - Screen.height/8, Screen.width/5, Screen.height/8), "Resume"))
+			if (PlayerPrefs.GetInt("anglais") != 0)
 			{
-				pause = false;
+				GUI.depth = 2;
+
+				GUI.Box(new Rect(Screen.width/2 - (Screen.width/4)/2, Screen.height/2 -(Screen.height/2)/2, Screen.width/4, Screen.height/2.18f), "MENU :");
+				
+				if(GUI.Button(new Rect(Screen.width/2 -(Screen.width/5)/2, (Screen.height/2 - (Screen.height/8)/2) - Screen.height/8, Screen.width/5, Screen.height/8), "Reprendre"))
+				{
+					pause = false;
+				}
+				if(GUI.Button(new Rect(Screen.width/2 -(Screen.width/5)/2, Screen.height/2 - (Screen.height/8)/2, Screen.width/5, Screen.height/8), "Retour menu"))
+				{
+					Application.LoadLevel("0xyde Menu");;
+				}
+				if(GUI.Button(new Rect(Screen.width/2 -(Screen.width/5)/2, (Screen.height/2 - (Screen.height/8)/2) + Screen.height/8, Screen.width/5, Screen.height/8), "Quitter"))
+				{
+					Application.Quit();
+				}
 			}
-			if(GUI.Button(new Rect(Screen.width/2 -(Screen.width/5)/2, Screen.height/2 - (Screen.height/8)/2, Screen.width/5, Screen.height/8), "Main Menu"))
+			else
 			{
-				Application.LoadLevel("0xyde Menu");;
+				GUI.Box(new Rect(Screen.width/2 - (Screen.width/4)/2, Screen.height/2 -(Screen.height/2)/2, Screen.width/4, Screen.height/2.18f), "MENU :");
+				
+				if(GUI.Button(new Rect(Screen.width/2 -(Screen.width/5)/2, (Screen.height/2 - (Screen.height/8)/2) - Screen.height/8, Screen.width/5, Screen.height/8), "Resume"))
+				{
+					pause = false;
+				}
+				if(GUI.Button(new Rect(Screen.width/2 -(Screen.width/5)/2, Screen.height/2 - (Screen.height/8)/2, Screen.width/5, Screen.height/8), "Main Menu"))
+				{
+					Application.LoadLevel("0xyde Menu");;
+				}
+				if(GUI.Button(new Rect(Screen.width/2 -(Screen.width/5)/2, (Screen.height/2 - (Screen.height/8)/2) + Screen.height/8, Screen.width/5, Screen.height/8), "Quit"))
+				{
+					Application.Quit();
+				}
 			}
-			if(GUI.Button(new Rect(Screen.width/2 -(Screen.width/5)/2, (Screen.height/2 - (Screen.height/8)/2) + Screen.height/8, Screen.width/5, Screen.height/8), "Quit"))
-			{
-				Application.Quit();
-			}
+
 		}	
 	}	
 }
